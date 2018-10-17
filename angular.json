@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "databinding": {
+    "givemeabrake": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/databinding",
+            "outputPath": "dist/givemeabrake",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -51,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "databinding:build"
+            "browserTarget": "givemeabrake:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "databinding:build:production"
+              "browserTarget": "givemeabrake:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "databinding:build"
+            "browserTarget": "givemeabrake:build"
           }
         },
         "test": {
@@ -78,7 +78,6 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ]
           }
@@ -97,7 +96,7 @@
         }
       }
     },
-    "databinding-e2e": {
+    "givemeabrake-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -105,11 +104,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "databinding:serve"
+            "devServerTarget": "givemeabrake:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "databinding:serve:production"
+              "devServerTarget": "givemeabrake:serve:production"
             }
           }
         },
@@ -125,5 +124,5 @@
       }
     }
   },
-  "defaultProject": "databinding"
+  "defaultProject": "givemeabrake"
 }
