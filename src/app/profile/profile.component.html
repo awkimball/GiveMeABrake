@@ -10,32 +10,23 @@
                       <label for="account_name">
                         <b>Name: </b>
                       </label>
-                      <input type="text" id="account_name" class="form-control" [(ngModel)]="account.name" readonly/>
+                      <input type="text" id="account_name" class="form-control" [(ngModel)]="account.name" style="pointer-events: none;"/>
                     </div>
                     <div class="form-group">
                         <label for="account_email">
                             <b>Email: </b>
                         </label>
-                        <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" readonly/>
+                        <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" style="pointer-events: none;"/>
                     </div>
                     <div class="form-group">
-                      <fieldset disabled>
-                        <label for="check-group">
-                          <b>Employee?</b>
+                        <label for="employeeCheck">
+                          <b>Employee? </b>
                         </label>
-                        <div class="form-check">
-                            <input class="form-check-input" name="employed" type="radio" value=1 id="employeeradio1" [(ngModel)]="account.isEmployee">
-                            <label class="form-check-label" for="employeeradio1">Yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" name="employed" type="radio" value=0 id="employeeradio0" [(ngModel)]="account.isEmployee">
-                            <label class="form-check-label" for="employeeradio0">No</label>
-                        </div>
-                      </fieldset>
+                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.isEmployee" disabled>
                     </div>
                     <div class="form-group">
                         <label for="dept_form">
-                          Department
+                          <b>Department: </b>
                         </label>
                         <select id="dept_form" class="form-control" [(ngModel)]="account.deptID" disabled>
                           <option></option>

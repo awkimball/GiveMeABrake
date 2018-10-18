@@ -22,12 +22,18 @@ export class ProfileComponent implements OnInit {
 
       name: 'Addison Kimball',
       email: 'addison@akimball.com',
-      isEmployee: '1',
+      isEmployee: true,
       deptID: 4
-
     };
 
+    this.getDepts();
 
+
+  }
+
+  getDepts(): void {
+
+    this.departments = this.deptService.getDepts();
 
   }
 
