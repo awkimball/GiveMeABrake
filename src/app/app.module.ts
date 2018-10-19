@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { TestComponent } from './test/test.component';
 
 
 
@@ -15,8 +14,7 @@ import { TestComponent } from './test/test.component';
   declarations: [
     AppComponent,
     ProfileComponent,
-    HomeComponent,
-    TestComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

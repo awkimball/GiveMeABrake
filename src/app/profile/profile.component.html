@@ -18,23 +18,6 @@
                         </label>
                         <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" style="pointer-events: none;"/>
                     </div>
-                    <div class="form-group">
-                        <label for="employeeCheck">
-                          <b>Employee? </b>
-                        </label>
-                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.isEmployee" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="dept_form">
-                          <b>Department: </b>
-                        </label>
-                        <select id="dept_form" class="form-control" [(ngModel)]="account.deptID" disabled>
-                          <option></option>
-                          <option *ngFor="let dept of departments" value="{{ dept.id }}">
-                            {{ dept.name }}
-                          </option>
-                        </select>
-                      </div>
 
 
                 </div>
