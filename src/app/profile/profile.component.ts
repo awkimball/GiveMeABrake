@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './../domain/models/account';
-import { DeptService } from '../dept.service';
 
 
 
@@ -12,8 +11,6 @@ import { DeptService } from '../dept.service';
 export class ProfileComponent implements OnInit {
 
   account: Account;
-
-  constructor(private deptService: DeptService) { }
 
   ngOnInit() {
 
