@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
       AppComponent,
       ProfileComponent,
       HomeComponent,
-      LoginComponent
+      LoginComponent,
+      NavbarComponent
    ],
    imports: [
       BrowserModule,
@@ -26,9 +28,13 @@ import { LoginComponent } from './login/login.component';
       AppRoutingModule,
       BrowserAnimationsModule
    ],
-   providers: [AccountService,NavServiceService],
+   providers: [
+      AccountService,
+      NavServiceService
+   ],
    bootstrap: [
-      AppComponent
+      AppComponent,
+      HomeComponent
    ]
 })
 export class AppModule {

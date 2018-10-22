@@ -1,2 +1,27 @@
-<h1 *ngIf="accountService.account.typeofaccount ===0">Welcome! Driver {{ accountService.account.name }}</h1>
-<h1 *ngIf="accountService.account.typeofaccount ===1">Welcome! Shop Owner {{ accountService.account.name }}</h1>
+<h4 *ngIf="accountService.account.typeofaccount ===0">Welcome! Driver {{ accountService.account.name }}</h4>
+<h4 *ngIf="accountService.account.typeofaccount ===1">Welcome! Shop Owner {{ accountService.account.name }}</h4>
+
+<br>
+<div *ngIf="accountService.account.typeofaccount ===0">
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  Last time you got oild changed was <strong>5pm Tuesday</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<button class = "btn btn-info" id="station">See nearest gas stations</button>
+<button class = "btn btn-success" id="dealership">Find dealership</button>
+<button class = "btn btn-primary" id="oil">See price change</button>
+</div>
+
+<div *ngIf="accountService.account.typeofaccount ===1">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    There will be a customer come in through at <strong>5pm.</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <button class = "btn btn-info" id="check">Check other gas stations</button>
+  <button class = "btn btn-success" id="deal">Upload deals</button>
+  <button class = "btn btn-primary" id="notify">Notify my deals</button>
+  </div>
