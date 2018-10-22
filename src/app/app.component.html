@@ -1,5 +1,5 @@
 <div class="navbar navbar-light bg-light mb-4 navbar-expand-lg">
-  <div class="navbar navbar-nav">
+  <div class="navbar navbar-nav" *ngIf="navServiceService.visible">
 
       <a [routerLink]="[ '' ]" routerLinkActive="active" class="h4 nav-link mt-auto mb-auto">Give Me a Brake!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,9 +14,11 @@
           </ul>
         </div>
 
+      <a [routerLink]="['/']"><button class = "btn btn-dark float-right" id="driver" (click)="navServiceService.hide()">Log Out</button></a>
+
+
 
   </div>
-
 
 </div>
 

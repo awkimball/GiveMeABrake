@@ -1,1 +1,2 @@
-<h1>Welcome!</h1>
+<h1 *ngIf="accountService.account.typeofaccount ===0">Welcome! Driver {{ accountService.account.name }}</h1>
+<h1 *ngIf="accountService.account.typeofaccount ===1">Welcome! Shop Owner {{ accountService.account.name }}</h1>

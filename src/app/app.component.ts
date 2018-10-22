@@ -1,3 +1,4 @@
+import { NavServiceService } from './nav-service.service';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fadeAnimation } from './animations';
@@ -15,5 +16,8 @@ export class AppComponent {
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  constructor(public navServiceService:NavServiceService) {
   }
 }
