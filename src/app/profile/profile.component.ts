@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
+import { RouterOutlet } from '@angular/router';
 
 
 
@@ -10,15 +11,23 @@ import { AccountService } from './../account.service';
   styleUrls: ['./profile.component.css']
 
 })
+
+
+
+
 export class ProfileComponent implements OnInit {
+  ngOnInit(): void {
+
+  }
 
   constructor(public accountService:AccountService) {
 
 
   }
 
-  ngOnInit() {
+  prepareRoute(outlet: RouterOutlet) {
 
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
 }

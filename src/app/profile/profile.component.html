@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="h5 card-header">
                 Profile
-                <button class='btn btn-dark float-right'>
+                <button class='btn btn-dark float-right' [routerLink]="[ '\edit' ]">
                   Edit Profile
                 </button>
                 </div>
@@ -29,20 +29,16 @@
                         </label>
                         <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="accountService.account.isCompany" disabled>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" *ngIf='!accountService.account.isCompany'>
                         <label for="dept_form">
                           <b>My Car: </b>
                         </label>
                         <table class='card'>
-                          <th class='card-header'>{{accountService.account.myCar.make}}</th>
+                          <th class='card-header'>{{accountService.account.myCar.year}} {{accountService.account.myCar.make}} {{accountService.account.myCar.model}}</th>
                           <div class='card-body'>
 
-                            <td>{{accountService.account.myCar.year}}</td>
-                            <td>{{accountService.account.myCar.model}}</td>
 
                           </div>
-
-
 
                         </table>
                       </div>
@@ -53,6 +49,3 @@
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    {{ accountService.account | json }}
-  </div>

@@ -11,6 +11,7 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 
 
@@ -20,7 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
       ProfileComponent,
       HomeComponent,
       LoginComponent,
-      NavbarComponent
+      NavbarComponent,
+      ProfileEditComponent
    ],
    imports: [
       BrowserModule,

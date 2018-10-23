@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-8">
+          <div class="card">
+              <div class="h5 card-header">
+              Profile
+              <button class='btn btn-success float-right' [routerLink]="[ '/profile' ]">
+                Done
+              </button>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                    <label for="account_name">
+                      <b *ngIf='accountService.account.isCompany == false'>Name: </b>
+                      <b *ngIf='accountService.account.isCompany == true'>Company Name: </b>
+
+                    </label>
+                    <input type="text" id="account_name" class="form-control" [(ngModel)]="accountService.account.name"/>
+                  </div>
+                  <div class="form-group">
+                      <label for="account_email">
+                          <b>Email: </b>
+                      </label>
+                      <input type="email" id="account_email" class="form-control" [(ngModel)]="accountService.account.email"/>
+                  </div>
+                  <div class="form-group">
+                      <label for="employeeCheck">
+                        <b>Are you a Business? </b>
+                      </label>
+                      <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="accountService.account.isCompany">
+                  </div>
+                  <div class="form-group" *ngIf='!accountService.account.isCompany'>
+                      <label for="dept_form">
+                        <b>My Car: </b>
+                      </label>
+                      <table class='card'>
+                        <th class='card-header'>{{accountService.account.myCar.year}} {{accountService.account.myCar.make}} {{accountService.account.myCar.model}}</th>
+                        <div class='card-body'>
+
+
+                        </div>
+
+                      </table>
+                    </div>
+
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
