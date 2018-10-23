@@ -12,11 +12,23 @@ export class AccountService {
     name: 'Addison Kimball',
     email: 'addison@akimball.com',
     password: 'password',
-    typeofaccount: 1
+    isCompany: false,
+    myCar: {
+
+        make: 'Honda',
+        model: 'Accord',
+        year: 2006,
+        submodel: '2.4L v6',
+        color: 'Black'
+
+    }
+
   };
 
-  changeType(type:number) {
-    this.account.typeofaccount=type;
+  changeType(type:boolean) {
+
+    this.account.isCompany=!this.account.isCompany;
+
   }
 
 }

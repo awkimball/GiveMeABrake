@@ -12,6 +12,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navServiceService.hide();
+
   }
 }
