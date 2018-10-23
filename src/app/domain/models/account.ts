@@ -1,9 +1,12 @@
+import { Car } from './car';
+
 export class Account {
 
   name?: string;
   email?: string;
-  isEmployee?: boolean;
+  isCompany?: boolean;
   deptID?: number;
+  myCar?: Car;
 
 
 }

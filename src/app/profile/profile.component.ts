@@ -22,8 +22,16 @@ export class ProfileComponent implements OnInit {
 
       name: 'Addison Kimball',
       email: 'addison@akimball.com',
-      isEmployee: true,
-      deptID: 4
+      isCompany: false,
+      myCar: {
+
+          make: 'Honda',
+          model: 'Accord',
+          year: 2006,
+          submodel: '2.4L v6',
+          color: 'Black'
+
+      }
     };
 
     this.getDepts();

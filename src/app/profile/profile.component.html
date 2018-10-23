@@ -4,6 +4,9 @@
             <div class="card">
                 <div class="h5 card-header">
                 Profile
+                <button class='btn' script='float: right'>
+                  Edit Profile
+                </button>
                 </div>
                 <div class="card-body">
                   <div class="form-group">
@@ -20,20 +23,26 @@
                     </div>
                     <div class="form-group">
                         <label for="employeeCheck">
-                          <b>Employee? </b>
+                          <b>Corporate? </b>
                         </label>
-                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.isEmployee" disabled>
+                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.isCompany" disabled>
                     </div>
                     <div class="form-group">
                         <label for="dept_form">
-                          <b>Department: </b>
+                          <b>My Car: </b>
                         </label>
-                        <select id="dept_form" class="form-control" [(ngModel)]="account.deptID" disabled>
-                          <option></option>
-                          <option *ngFor="let dept of departments" value="{{ dept.id }}">
-                            {{ dept.name }}
-                          </option>
-                        </select>
+                        <table class='card'>
+                          <th class='card-header'>{{account.myCar.make}}</th>
+                          <div class='card-body'>
+
+                            <td>{{account.myCar.year}}</td>
+                            <td>{{account.myCar.model}}</td>
+
+                          </div>
+
+
+
+                        </table>
                       </div>
 
 
