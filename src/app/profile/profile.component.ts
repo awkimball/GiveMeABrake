@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './../domain/models/account';
-import { DeptService } from '../dept.service';
-import { Department } from '../domain/models/department';
+
 
 
 @Component({
@@ -12,9 +11,6 @@ import { Department } from '../domain/models/department';
 export class ProfileComponent implements OnInit {
 
   account: Account;
-  departments: Department[];
-
-  constructor(private deptService: DeptService) { }
 
   ngOnInit() {
 
@@ -31,18 +27,13 @@ export class ProfileComponent implements OnInit {
           submodel: '2.4L v6',
           color: 'Black'
 
-      }
+      },
+      password: 'password',
+      typeofaccount: 1
     };
 
-    this.getDepts();
-
 
   }
 
-  getDepts(): void {
-
-    this.departments = this.deptService.getDepts();
-
-  }
 
 }

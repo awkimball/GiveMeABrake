@@ -7,6 +7,8 @@ export class Account {
   isCompany?: boolean;
   deptID?: number;
   myCar?: Car;
+  password?: string;
+  typeofaccount?: number;
 
 
 }
