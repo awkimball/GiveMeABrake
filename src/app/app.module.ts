@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { NavServiceService } from './nav-service.service';
 import { AccountService } from './account.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
       ProfileComponent,
       HomeComponent,
       LoginComponent,
-      NavbarComponent
+      NavbarComponent,
+      SignupComponent
    ],
    imports: [
       BrowserModule,
@@ -33,8 +35,7 @@ import { NavbarComponent } from './navbar/navbar.component';
       NavServiceService
    ],
    bootstrap: [
-      AppComponent,
-      HomeComponent
+      AppComponent
    ]
 })
 export class AppModule {

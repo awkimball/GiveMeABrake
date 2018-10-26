@@ -1,5 +1,31 @@
-<div class="center">
-  <a [routerLink]="['/home']" (click)="setValue(0); navServiceService.show()"><button class = "btn btn-primary" id="driver">Login As Driver</button></a>
-  <a [routerLink]="['/home']" (click)="setValue(1); navServiceService.show()"><button class = "btn btn-primary" id= "owner">Login As Store Owner</button></a>
+<div class="container">
+  <form>
+      <div class="form-header">
+          <legend class="row col-md-8" style="text-align: center">Log in </legend>
+        </div>
+    <div class="form-group">
+      <legend class="col-form-label  pt-0">Account</legend>
+      <input type="text" class="form-control col-form-label col-sm-6 pt-0" id="formGroupExampleInput" placeholder="email address "
+      [(ngModel)]= "accountname" name="accountname">
+    </div>
+    <div class="form-group">
+      <legend class="col-form-label  pt-0">Password</legend>
+      <input type="password" class="form-control col-form-label col-sm-6 pt-0" id="formGroupExampleInput2" placeholder="password input"
+      [(ngModel)]= "password" name = "password">
+    </div>
+
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button  type="button" class="btn btn-outline-primary" (click) = "checkAccount()"> Log In</button>
+        </div>
+        <a routerLink="/signup" class="btn btn-link">Register</a>
+
+
+  </form>
+  <div class="col-md-4">
+    <pre>{{accountname | json}}</pre>
+  </div>
 </div>
+
+
+
 

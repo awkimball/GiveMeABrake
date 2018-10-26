@@ -1,22 +1,30 @@
+import { Vehicle } from './domain/vehicle';
+import { Owner } from './domain/owner';
+import { Driver } from './domain/driver';
 import { Injectable } from '@angular/core';
-import { Account } from './domain/models/account';
-
-
+import { Observable,Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AccountService {
 
-  account: Account = {
+  driverAccounts:Driver[] = [];
 
-    name: 'Addison Kimball',
-    email: 'addison@akimball.com',
-    password: 'password',
-    typeofaccount: 1
-  };
+  drivers= new Subject<Driver[]>();
+  ownerss= new Subject<Owner[]>();
 
-  changeType(type:number) {
-    this.account.typeofaccount=type;
+
+
+
+  constructor() {
+
+}
+  addDriver(newdriver:Driver[]) {
+    this.drivers.next(newdriver);
   }
 
+  getDriver(): Observable<Driver[]> {
+    return this.drivers.asObservable();
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from './../domain/models/account';
 
 
 
@@ -10,17 +9,10 @@ import { Account } from './../domain/models/account';
 })
 export class ProfileComponent implements OnInit {
 
-  account: Account;
 
   ngOnInit() {
 
-    this.account = {
 
-      name: 'Addison Kimball',
-      email: 'addison@akimball.com',
-      password: 'password',
-      typeofaccount: 1
-    };
 
 
   }

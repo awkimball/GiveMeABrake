@@ -1,13 +1,4 @@
-#owner,#driver{
-  margin:1em;
+.container{
+  background-color: white;
 }
-.center{
-  height:100%;
-  width:100%;
-  vertical-align: middle;
-  text-align: center;
-  top:0;
-  left:0;
-  right:0;
 
-}

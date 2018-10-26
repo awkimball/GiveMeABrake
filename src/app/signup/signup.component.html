@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Regisiter Your Account
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="account_name">
+              Username
+            </label>
+            <input type="text" id="account_name" class="form-control"  [(ngModel)] = "newDriver.username" required minlength="5" maxlength="30" name="username" #username="ngModel">
+            <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+                <div [hidden]="!username.errors.required">
+                    Username is required!
+                </div>
+                <div [hidden]="!username.errors.minlength">
+                  Title must be at least 5 characters long.
+                </div>
+                <div [hidden]="!username.errors.maxlength">
+                  Title cannot be more than 30 characters long.
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="account_email">
+              Email
+            </label>
+            <input type="email" id="account_email" class="form-control"  [(ngModel)] = "newDriver.email" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required #account_email="ngModel"/>
+            <div  [hidden]="account_email.valid || account_email.untouched"  class="alert alert-danger">
+                <div  *ngIf="!!account_email?.errors?.required">
+                    Email is required
+                </div>
+                <div  *ngIf="!!account_email?.errors?.pattern">
+                    Email is invalid
+                </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="account_password">
+                Password
+              </label>
+              <input type="password" id="account_password" class="form-control" [(ngModel)] = "newDriver.password"/>
+            </div>
+            <div class="form-group">
+                <label for="account_zipcode">
+                  Zipcode
+                </label>
+                <input type="number" id="account_zipcode" class="form-control" [(ngModel)] = "newDriver.zipcode"/>
+              </div>
+              <div class="form-group">
+                  <label for="account_phone">
+                    Phone Number
+                  </label>
+                  <input type="number" id="account_phone" class="form-control" [(ngModel)] = "newDriver.phone"/>
+                </div>
+                <div class="form-group">
+                    <label for="account_name">
+                      Your Full Name
+                    </label>
+                    <input type="name" id="account_name" class="form-control" [(ngModel)] = "newDriver.name"/>
+                  </div>
+          <br />
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" [(ngModel)]="addACar" >
+              <label class="form-check-label" for="gridRadios1">
+                Add your car infomration
+              </label>
+            </div>
+            <br />
+          <div *ngIf="addACar">
+              <div class="form-group">
+                  <label for="account_make">
+                    Make
+                  </label>
+                  <input type="text" id="account_make" class="form-control" [(ngModel)] = "newCar.make"/>
+                </div>
+                <div class="form-group">
+                    <label for="account_model">
+                      Model
+                    </label>
+                    <input type="text" id="account_model" class="form-control" [(ngModel)] = "newCar.model"/>
+                  </div>
+                  <div class="form-group">
+                      <label for="account_year">
+                        Year
+                      </label>
+                      <input type="number" id="account_year" class="form-control" [(ngModel)] = "newCar.year"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="account_mile">
+                          Miles
+                        </label>
+                        <input type="number" id="account_mile" class="form-control" [(ngModel)] = "newCar.miles"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="account_oilChangeDate">
+                              oilChangeDate
+                          </label>
+                          <input type="date" id="account_oilChangeDate" class="form-control" [(ngModel)] = "newCar.oilChangeDate"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="account_tireChangeDate">
+                                tireChangeDate
+                            </label>
+                            <input type="date" id="account_tireChangeDate" class="form-control" [(ngModel)] = "newCar.tireChangeDate"/>
+                          </div>
+                          <div class="form-group">
+                              <label for="account_transimissionCheck">
+                                  transimissionCheck
+                              </label>
+                              <input type="date" id="account_transimissionCheck" class="form-control" [(ngModel)] = "newCar.transimissionCheck"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="account_inspection">
+                                    inspection
+                                </label>
+                                <input type="date" id="account_inspection" class="form-control" [(ngModel)] = "newCar.inspection"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="account_generalDisc">
+                                    generalDisc
+                                </label>
+                                <input type="text" id="account_generalDisc" class="form-control" [(ngModel)] = "newCar.generalDisc"/>
+                              </div>
+                            <div class="form-group">
+          </div>
+        </div>
+        <button routerLink="" class="btn btn-outline-primary" type="button" (click)="saveAccount()">
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <pre>{{newDriver | json}}</pre>
+      <pre>{{newCar | json}}</pre>
+    </div>
+  </div>
+</div>
+<br />
