@@ -1,3 +1,4 @@
+import { MapcalculatorService } from './mapcalculator.service';
 import { SignupComponent } from './signup/signup.component';
 import { NavServiceService } from './nav-service.service';
 import { AccountService } from './account.service';
@@ -36,7 +37,8 @@ import { DealsComponent } from './deals/deals.component';
    ],
    providers: [
       AccountService,
-      NavServiceService
+      NavServiceService,
+      MapcalculatorService
    ],
    bootstrap: [
       AppComponent
