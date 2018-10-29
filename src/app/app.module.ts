@@ -12,6 +12,8 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CheckdealComponent } from './checkdeal/checkdeal.component';
+import { DealsComponent } from './deals/deals.component';
 
 
 
@@ -22,7 +24,9 @@ import { NavbarComponent } from './navbar/navbar.component';
       HomeComponent,
       LoginComponent,
       NavbarComponent,
-      SignupComponent
+      SignupComponent,
+      CheckdealComponent,
+      DealsComponent
    ],
    imports: [
       BrowserModule,

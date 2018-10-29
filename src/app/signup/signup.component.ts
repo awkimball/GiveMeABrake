@@ -2,9 +2,11 @@ import { Owner } from './../domain/owner';
 import { Vehicle } from './../domain/vehicle';
 import { Driver } from './../domain/driver';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef,ViewChild} from '@angular/core';
 import { NavServiceService } from './../nav-service.service';
 import { AccountService } from './../account.service';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -12,73 +14,66 @@ import { AccountService } from './../account.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  @ViewChild('openModal') openModal:ElementRef;
+  @ViewChild('openModal2') openModal2:ElementRef;
 
   newDriver:Driver = new Driver();
   newOwner:Owner = new Owner();
   newCar:Vehicle = new Vehicle();
 
+  newReview: string;
+  newDeal: string;
+
   addACar:boolean;
 
-  savedDriver:Driver[] = [];
-  saveOwner:Owner[] = [];
-  defaultDriver: Driver= new Driver();
-  defaultOwner:Owner = new Owner();
+  showPage: boolean;
+  isADriver:boolean;
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService) {
-    this.defaultDriver = {
-      username: 'Docker',
-      password: 'password',
-      email:'docker@gmail.com',
-      zipcode: 75205,
-      phone:2145005550,
-      name: 'Yu Chen',
-      vehicles: [{
-        make: 'make',
-        model: 'Camry',
-        year: 1997,
-        miles: 2000,
-        oilChangeDate: new Date('February 4, 2016 10:13:00'),
-        tireChangeDate: new Date('February 4, 2016 10:13:00'),
-        transimissionCheck:new Date('February 4, 2016 10:13:00'),
-        inspection: new Date('February 4, 2016 10:13:00'),
-        generalDisc: 'general'
-
-      }]},
-
-    this.defaultOwner = {
-      username:'owner',
-      password:'123',
-      email:'owner@gmail.com',
-      zipcode:75205,
-      phone:2146003333,
-      name:'Coyle Frank',
-
-      workingEmail:'bestshop@gmail.com',
-      description:'this is the best gas station in the world',
-      review:['it is best!','i love it','fuck this station'],
-      deals:['10% discount for gas!','buy one Coke get one free!']
-    //  picutre:HTMLImageElement;
-    };
-
-    this.savedDriver.push(this.defaultDriver);
-    this.saveOwner.push(this.defaultOwner);
+  constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
+    this.showPage = false;
+    this.isADriver=false;
   }
 
   ngOnInit() {
-
-
-
+    this.openModal.nativeElement.click();
   }
 
 
+  addCarCheck() {
+    if(this.addACar) {
+      this.saveAccount();
+      this.router.navigate(['']);
+    } else {
+      this.openModal2.nativeElement.click();
+    }
+  }
+
+  addOwnerCheck() {
+    if(this.newDeal) {
+    this.newOwner.deals = [];
+    this.newOwner.deals.push(this.newDeal);
+    }
+    if(this.newReview) {
+      this.newOwner.review = [];
+      this.newOwner.review.push(this.newDeal);
+    }
+
+    this.accountService.defaultOwner.push(this.newOwner);
+    this.newOwner = new Owner;
+    this.newDeal = '';
+    this.newReview = '';
+  }
 
   saveAccount() {
- //   this.newDriver.vehicles.push(this.newCar);
+    if(this.addACar) {
+      this.newDriver.vehicles = [];
+      this.newDriver.vehicles.push(this.newCar);}
   //  this.savedDriver.push(this.newDriver);
 
-    console.log(this.savedDriver);
 
-    this.accountService.addDriver(this.savedDriver);
+   this.accountService.defaultDriver.push(this.newDriver);
+   this.newDriver = new Driver;
+   this.newCar = new Vehicle;
   }
 
 }

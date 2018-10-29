@@ -1,0 +1,31 @@
+<body>
+    <ul>
+      <p id="check">Now you have following deals:</p>
+      <li *ngFor="let ideal of this.accountService.setOwner.deals">
+        <p>{{ideal}}</p>
+      </li>
+    </ul>
+    <div id="buttondeal">
+    <button  class="btn btn-info btn-lg" data-toggle="modal" data-target="#bootstrapModel" id="adddeal" type="button" #openModal>Add new deals</button>
+    <div id="bootstrapModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="checktitle">Adding new deals</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="account_deal">
+                    </label>
+                    <input type="text" id="account_deal" class="form-control"  [(ngModel)] = "newDeal"  name="newDeals" required #newDeals="ngModel"/>
+                  </div>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="saveDeal" (click)="saveDeal()" [disabled]="newDeals.errors">Add your deal</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal"id="back"  #goback>Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

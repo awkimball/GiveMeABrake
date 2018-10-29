@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
   accountname='';
   password = '';
 
-  subscription: Subscription;
+  // subscription: Subscription;
 
-  driverAccounts:Driver[] = [];
-  ownerAccounts:Owner[];
+  // driverAccounts:Driver[] = [];
+  // ownerAccounts:Owner[];
 
   constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
    }
@@ -31,21 +31,45 @@ export class LoginComponent implements OnInit {
   }
 
   checkAccount() {
-    this.accountService.getDriver().subscribe(account => {this.driverAccounts = account;
-      for(const dv of this.driverAccounts) {
-        if(this.accountname === dv.username) {
-          if(this.password === dv.password) {
-            console.log('invalid password', dv.username, dv.password, this.accountname, this.password);
-            this.router.navigate(['\home']);
-          } else {
-            console.log('login');
-            this.router.navigate(['\home']);
-          }
-        }
+    for(const dv of this.accountService.defaultDriver) {
+      if(this.accountname === dv.username) {
+        if(this.password === dv.password) {
+          console.log('login');
+          this.accountService.setDriver = dv;
+          this.accountService.accountType=true;
+          this.router.navigate(['\home']);
+        } else {
+                console.log('Invalid password');
+              }
       }
+    }
+    for(const dv of this.accountService.defaultOwner) {
+      if(this.accountname === dv.username) {
+        if(this.password === dv.password) {
+          console.log('login');
+          this.accountService.setOwner=dv;
+          this.accountService.accountType=false;
+          this.router.navigate(['\home']);
+        } else {
+                console.log('Invalid password');
+              }
+      }
+    }
+    // this.accountService.getDriver().subscribe(account => {this.driverAccounts = account;
+    //   for(const dv of this.driverAccounts) {
+    //     if(this.accountname === dv.username) {
+    //       if(this.password === dv.password) {
+    //         console.log('invalid password', dv.username, dv.password, this.accountname, this.password);
+    //         this.router.navigate(['\home']);
+    //       } else {
+    //         console.log('login');
+    //         this.router.navigate(['\home']);
+    //       }
+    //     }
+    //   }
 
-      console.log('invalid username');
-    });
+    //   console.log('invalid username');
+    // });
   }
 
 
