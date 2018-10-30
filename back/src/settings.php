@@ -5,9 +5,9 @@ return [
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
         'db' => [
             "host" => "localhost",
-            "dbname" => "your-database-name",
-            "user" => "your-mysql-user",
-            "pass" => "your-mysql-password"
+            "dbname" => "gmab",
+            "user" => "root",
+            "pass" => "team2"
         ],
         // Renderer settings
         'renderer' => [

@@ -102,3 +102,11 @@ $app->post('/add_vehicle', function ($request, $response) {
     $sth->execute();
     return $this->response->withJson($input);
 });
+$app->get('/users', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM users"
+    );
+    $sth->execute();
+    $users = $sth->fetchObject();
+    return $this->response->withJson($users);
+});
