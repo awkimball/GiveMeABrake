@@ -1,3 +1,5 @@
+import { MapcalculatorService } from './mapcalculator.service';
+import { SignupComponent } from './signup/signup.component';
 import { NavServiceService } from './nav-service.service';
 import { AccountService } from './account.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { CheckdealComponent } from './checkdeal/checkdeal.component';
+import { DealsComponent } from './deals/deals.component';
 
 
 
@@ -22,7 +26,10 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
       HomeComponent,
       LoginComponent,
       NavbarComponent,
-      ProfileEditComponent
+      ProfileEditComponent,
+      SignupComponent,
+      CheckdealComponent,
+      DealsComponent
    ],
    imports: [
       BrowserModule,
@@ -32,11 +39,11 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
    ],
    providers: [
       AccountService,
-      NavServiceService
+      NavServiceService,
+      MapcalculatorService
    ],
    bootstrap: [
-      AppComponent,
-      HomeComponent
+      AppComponent
    ]
 })
 export class AppModule {
