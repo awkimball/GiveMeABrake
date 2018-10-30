@@ -1,0 +1,11 @@
+<body>
+  <ul *ngFor="let owner of otherdeal">
+    <p id="check">The {{owner.name}}'s shop has following deals:</p>
+    <li *ngFor="let ideal of owner.deals">
+      <p>{{ideal}}</p>
+    </li>
+  </ul>
+  <div id="buttondeal">
+  <button routerLink="/deals" class = "btn btn-info" id="mydeal" type="button">See my deals</button>
+  </div>
+</body>

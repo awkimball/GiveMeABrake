@@ -1,0 +1,27 @@
+.btn{
+  margin:1em;
+}
+
+h4{
+  margin-left:1em;
+}
+
+.alert{
+  margin:1em;
+}
+
+#main{
+  background-color: white;
+  border:1px solid black;
+  width: 70em;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.mainpage{
+  padding:2em;
+}
+/*
+#main{
+  background-color: gray;
+} */
