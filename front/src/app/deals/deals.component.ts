@@ -1,5 +1,4 @@
 import { Owner } from './../domain/owner';
-import { NavServiceService } from './../nav-service.service';
 import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
 import { AccountService } from './../account.service';
 import { $ } from 'protractor';
@@ -14,11 +13,10 @@ export class DealsComponent implements OnInit {
 
   newDeal = '';
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService) {
+  constructor(public accountService:AccountService) {
   }
 
   ngOnInit() {
-    this.navServiceService.show();
   }
 
   saveDeal() {

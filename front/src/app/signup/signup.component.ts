@@ -3,7 +3,6 @@ import { Vehicle } from './../domain/vehicle';
 import { Driver } from './../domain/driver';
 
 import { Component, OnInit, ElementRef,ViewChild} from '@angular/core';
-import { NavServiceService } from './../nav-service.service';
 import { AccountService } from './../account.service';
 import { Router} from '@angular/router';
 
@@ -29,7 +28,7 @@ export class SignupComponent implements OnInit {
   showPage: boolean;
   isADriver:boolean;
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
+  constructor(public accountService:AccountService, public router: Router) {
     this.showPage = false;
     this.isADriver=false;
   }

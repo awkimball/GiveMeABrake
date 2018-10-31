@@ -1,6 +1,5 @@
 import { MapcalculatorService } from './mapcalculator.service';
 import { SignupComponent } from './signup/signup.component';
-import { NavServiceService } from './nav-service.service';
 import { AccountService } from './account.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -39,7 +38,6 @@ import { DealsComponent } from './deals/deals.component';
    ],
    providers: [
       AccountService,
-      NavServiceService,
       MapcalculatorService
    ],
    bootstrap: [

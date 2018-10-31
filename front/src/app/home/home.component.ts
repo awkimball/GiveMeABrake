@@ -1,5 +1,3 @@
-
-import { NavServiceService } from './../nav-service.service';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
 
@@ -9,12 +7,14 @@ import { AccountService } from './../account.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   shit:number;
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService) {
+
+  constructor(public accountService:AccountService) {
+      
   }
 
   ngOnInit() {
-    this.navServiceService.show();
   }
 
 }

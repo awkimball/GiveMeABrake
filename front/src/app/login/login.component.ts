@@ -2,7 +2,6 @@ import { Owner } from './../domain/owner';
 import { Driver } from './../domain/driver';
 
 import { Component, OnInit } from '@angular/core';
-import { NavServiceService } from './../nav-service.service';
 import { AccountService } from './../account.service';
 import { Subscription } from 'rxjs';
 
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
   // driverAccounts:Driver[] = [];
   // ownerAccounts:Owner[];
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
+  constructor(public accountService:AccountService, public router: Router) {
    }
 
   ngOnInit() {
