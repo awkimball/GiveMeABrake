@@ -1,4 +1,4 @@
-export class Account {
+export interface Account {
 
     username:string;
     password:string;
