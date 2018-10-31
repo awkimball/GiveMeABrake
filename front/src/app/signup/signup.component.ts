@@ -1,6 +1,6 @@
-import { Owner } from './../domain/owner';
-import { Vehicle } from './../domain/vehicle';
-import { Driver } from './../domain/driver';
+import { Owner } from '../domain/models/owner';
+import { Vehicle } from '../domain/models/vehicle';
+import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit, ElementRef,ViewChild} from '@angular/core';
 import { AccountService } from './../account.service';

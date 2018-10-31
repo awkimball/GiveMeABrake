@@ -1,6 +1,6 @@
 
-import { Owner } from './domain/owner';
-import { Driver } from './domain/driver';
+import { Owner } from './domain/models/owner';
+import { Driver } from './domain/models/driver';
 import { Injectable } from '@angular/core';
 import { Observable,Subject } from 'rxjs';
 @Injectable({

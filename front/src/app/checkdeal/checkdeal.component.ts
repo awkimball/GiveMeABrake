@@ -1,4 +1,4 @@
-import { Owner } from './../domain/owner';
+import { Owner } from '../domain/models/owner';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
 

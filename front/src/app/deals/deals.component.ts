@@ -1,4 +1,4 @@
-import { Owner } from './../domain/owner';
+import { Owner } from '../domain/models/owner';
 import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
 import { AccountService } from './../account.service';
 import { $ } from 'protractor';
