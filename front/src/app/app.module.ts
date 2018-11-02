@@ -15,6 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { CheckdealComponent } from './checkdeal/checkdeal.component';
 import { DealsComponent } from './deals/deals.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -34,7 +36,8 @@ import { DealsComponent } from './deals/deals.component';
       BrowserModule,
       FormsModule,
       AppRoutingModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      HttpClientModule
    ],
    providers: [
       AccountService,

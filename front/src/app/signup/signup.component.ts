@@ -48,31 +48,31 @@ export class SignupComponent implements OnInit {
   }
 
   addOwnerCheck() {
-    if(this.newDeal) {
-    this.newOwner.deals = [];
-    this.newOwner.deals.push(this.newDeal);
-    }
-    if(this.newReview) {
-      this.newOwner.review = [];
-      this.newOwner.review.push(this.newDeal);
-    }
+    // if(this.newDeal) {
+    // this.newOwner.deals = [];
+    // this.newOwner.deals.push(this.newDeal);
+    // }
+    // if(this.newReview) {
+    //   this.newOwner.review = [];
+    //   this.newOwner.review.push(this.newDeal);
+    // }
 
-    this.accountService.defaultOwner.push(this.newOwner);
-    this.newOwner = new Owner;
-    this.newDeal = '';
-    this.newReview = '';
+    // this.accountService.defaultOwner.push(this.newOwner);
+    // this.newOwner = new Owner;
+    // this.newDeal = '';
+    // this.newReview = '';
   }
 
   saveAccount() {
-    if(this.addACar) {
-      this.newDriver.vehicles = [];
-      this.newDriver.vehicles.push(this.newCar);}
-  //  this.savedDriver.push(this.newDriver);
+//     if(this.addACar) {
+//       this.newDriver.vehicles = [];
+//       this.newDriver.vehicles.push(this.newCar);}
+//   //  this.savedDriver.push(this.newDriver);
 
 
-   this.accountService.defaultDriver.push(this.newDriver);
-   this.newDriver = new Driver;
-   this.newCar = new Vehicle;
+//    this.accountService.defaultDriver.push(this.newDriver);
+//    this.newDriver = new Driver;
+//    this.newCar = new Vehicle;
   }
 
 }

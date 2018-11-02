@@ -30,30 +30,30 @@ export class LoginComponent implements OnInit {
   }
 
   checkAccount() {
-    for(const dv of this.accountService.defaultDriver) {
-      if(this.accountname === dv.username) {
-        if(this.password === dv.password) {
-          console.log('login');
-          this.accountService.setDriver = dv;
-          this.accountService.accountType=true;
-          this.router.navigate(['\home']);
-        } else {
-                console.log('Invalid password');
-              }
-      }
-    }
-    for(const dv of this.accountService.defaultOwner) {
-      if(this.accountname === dv.username) {
-        if(this.password === dv.password) {
-          console.log('login');
-          this.accountService.setOwner=dv;
-          this.accountService.accountType=false;
-          this.router.navigate(['\home']);
-        } else {
-                console.log('Invalid password');
-              }
-      }
-    }
+    // for(const dv of this.accountService.defaultDriver) {
+    //   if(this.accountname === dv.username) {
+    //     if(this.password === dv.password) {
+    //       console.log('login');
+    //       this.accountService.setDriver = dv;
+    //       this.accountService.accountType=true;
+    //       this.router.navigate(['\home']);
+    //     } else {
+    //             console.log('Invalid password');
+    //           }
+    //   }
+    // }
+    // for(const dv of this.accountService.defaultOwner) {
+    //   if(this.accountname === dv.username) {
+    //     if(this.password === dv.password) {
+    //       console.log('login');
+    //       this.accountService.setOwner=dv;
+    //       this.accountService.accountType=false;
+    //       this.router.navigate(['\home']);
+    //     } else {
+    //             console.log('Invalid password');
+    //           }
+    //   }
+    // }
     // this.accountService.getDriver().subscribe(account => {this.driverAccounts = account;
     //   for(const dv of this.driverAccounts) {
     //     if(this.accountname === dv.username) {

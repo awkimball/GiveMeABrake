@@ -19,11 +19,11 @@ export class DealsComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveDeal() {
-    this.accountService.setOwner.deals.push(this.newDeal);
+//   saveDeal() {
+//     this.accountService.setOwner.deals.push(this.newDeal);
 
-    this.newDeal = '';
-    this.goback.nativeElement.click();
-  }
+//     this.newDeal = '';
+//     this.goback.nativeElement.click();
+//   }
 
 }

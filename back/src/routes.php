@@ -35,9 +35,10 @@ $app->get('/user/[{idusers}]', function ($request, $response, $args) {
 $app->post('/register', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO
-        users (email, username, password, zipcode, account_type)
-        VALUES (:email, :username, :password, :zipcode, :account_type)";
+        users (name, email, username, password, zipcode, account_type)
+        VALUES (:name, :email, :username, :password, :zipcode, :account_type)";
     $sth = $this->db->prepare($sql);
+    $sth->bindParam("name", $input['name']);
     $sth->bindParam("email", $input['email']);
     $sth->bindParam("username", $input['username']);
     $sth->bindParam("password", $input['password']);
