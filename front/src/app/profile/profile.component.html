@@ -11,30 +11,30 @@
                 <div class="card-body">
                   <div class="form-group">
                       <label for="account_name">
-                        <b *ngIf='accountService.account.isCompany == false'>Name: </b>
-                        <b *ngIf='accountService.account.isCompany == true'>Company Name: </b>
+                        <b *ngIf='account.account_type == 0'>Name: </b>
+                        <b *ngIf='account.account_type == 1'>Company Name: </b>
 
                       </label>
-                      <input type="text" id="account_name" class="form-control" [(ngModel)]="accountService.account.name" style="pointer-events: none;"/>
+                      <input type="text" id="account_name" class="form-control" [(ngModel)]="account.name" style="pointer-events: none;"/>
                     </div>
                     <div class="form-group">
                         <label for="account_email">
                             <b>Email: </b>
                         </label>
-                        <input type="email" id="account_email" class="form-control" [(ngModel)]="accountService.account.email" style="pointer-events: none;"/>
+                        <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" style="pointer-events: none;"/>
                     </div>
                     <div class="form-group">
                         <label for="employeeCheck">
-                          <b>Are you a Business? </b>
+                          <b>Business? </b>
                         </label>
-                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="accountService.account.isCompany" disabled>
+                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.account_type" disabled>
                     </div>
-                    <div class="form-group" *ngIf='!accountService.account.isCompany'>
+                    <div class="form-group" *ngIf='account.account_type == 0'>
                         <label for="dept_form">
                           <b>My Car: </b>
                         </label>
                         <table class='card'>
-                          <th class='card-header'>{{accountService.account.myCar.year}} {{accountService.account.myCar.make}} {{accountService.account.myCar.model}}</th>
+                          <th class='card-header'>{{account.name}} {{account.name}} {{account.name}}</th>
                           <div class='card-body'>
 
 

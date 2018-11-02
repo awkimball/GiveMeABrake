@@ -1,6 +1,5 @@
 import { MapcalculatorService } from './mapcalculator.service';
 import { SignupComponent } from './signup/signup.component';
-import { NavServiceService } from './nav-service.service';
 import { AccountService } from './account.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { CheckdealComponent } from './checkdeal/checkdeal.component';
 import { DealsComponent } from './deals/deals.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -35,11 +36,11 @@ import { DealsComponent } from './deals/deals.component';
       BrowserModule,
       FormsModule,
       AppRoutingModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      HttpClientModule
    ],
    providers: [
       AccountService,
-      NavServiceService,
       MapcalculatorService
    ],
    bootstrap: [

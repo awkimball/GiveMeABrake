@@ -1,5 +1,4 @@
-import { Owner } from './../domain/owner';
-import { NavServiceService } from './../nav-service.service';
+import { Owner } from '../domain/models/owner';
 import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
 import { AccountService } from './../account.service';
 import { $ } from 'protractor';
@@ -14,18 +13,17 @@ export class DealsComponent implements OnInit {
 
   newDeal = '';
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService) {
+  constructor(public accountService:AccountService) {
   }
 
   ngOnInit() {
-    this.navServiceService.show();
   }
 
-  saveDeal() {
-    this.accountService.setOwner.deals.push(this.newDeal);
+//   saveDeal() {
+//     this.accountService.setOwner.deals.push(this.newDeal);
 
-    this.newDeal = '';
-    this.goback.nativeElement.click();
-  }
+//     this.newDeal = '';
+//     this.goback.nativeElement.click();
+//   }
 
 }

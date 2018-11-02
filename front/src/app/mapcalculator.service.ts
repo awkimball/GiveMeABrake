@@ -1,4 +1,4 @@
-import { Zipcode } from './domain/zipcode';
+import { Zipcode } from './domain/models/zipcode';
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -1,95 +1,57 @@
 
-import { Owner } from './domain/owner';
-import { Driver } from './domain/driver';
+import { Owner } from './domain/models/owner';
+import { Driver } from './domain/models/driver';
+import { Account } from './domain/models/account'
 import { Injectable } from '@angular/core';
-import { Observable,Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators'
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class AccountService {
 
-  // driverAccounts:Driver[] = [];
+    protected endPoint = "http://aws.akimball.com:8080";
 
-  // drivers= new Subject<Driver[]>();
-  // ownerss= new Subject<Owner[]>();
+    protected httpOptions = {
+        headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'akimball'
+        })
+    };
 
-  defaultDriver: Driver[] = [];
-  defaultOwner: Owner[] =[];
+    constructor(
+        protected httpClient: HttpClient
+    ) {}
 
-  accountType: boolean;
+    getById(id: number): Observable<Account> {
+        return this.httpClient
+        .get<Account>(`${this.endPoint}/user/${id}`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
 
-  setDriver: Driver = new Driver;
-  setOwner: Owner = new Owner;
+    add(account: Account): Observable<Account> {
+        return this.httpClient
+        .post<Account>(this.endPoint, account, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
 
-  constructor() {
-    this.defaultDriver = [{
-      username: 'Docker',
-      password: 'password',
-      email:'docker@gmail.com',
-      zipcode: 75205,
-      phone:2145005550,
-      name: 'Yu Chen',
-      vehicles: [{
-        make: 'make',
-        model: 'Camry',
-        year: 1997,
-        miles: 2000,
-        oilChangeDate: new Date('February 4, 2016 10:13:00'),
-        tireChangeDate: new Date('February 4, 2016 10:13:00'),
-        transimissionCheck:new Date('February 4, 2016 10:13:00'),
-        inspection: new Date('February 4, 2016 10:13:00'),
-        generalDisc: 'general'
+    update(id: number, account: Account): Observable<Account> {
+        return this.httpClient
+        .put<Account>(`${this.endPoint}/${id}`, account, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
 
-      }]}],
-
-    this.defaultOwner =[ {
-      username:'owner',
-      password:'123',
-      email:'owner@gmail.com',
-      zipcode:75205,
-      phone:2146003333,
-      name:'Coyle Frank',
-
-      workingEmail:'bestshop@gmail.com',
-      description:'this is the best gas station in the world',
-      review:['it is best!','i love it','fuck this station'],
-      deals:['10% discount for gas!','buy one Coke get one free!']
-    //  picutre:HTMLImageElement;
-    },{
-      username:'owner2',
-      password:'123',
-      email:'owner2@gmail.com',
-      zipcode:75205,
-      phone:2146003334,
-      name:'Addison Kimball',
-
-      workingEmail:'addison@gmail.com',
-      description:'this is the best gas station in the world',
-      review:['it is best!','i love it','fuck this station'],
-      deals:['20% discount for gas!','buy one Sprite get one free!']
-    //  picutre:HTMLImageElement;
-    }, {
-      username:'owner3',
-      password:'123',
-      email:'owner3@gmail.com',
-      zipcode:75205,
-      phone:2146003335,
-      name:'Ova Butter',
-
-      workingEmail:'ova@gmail.com',
-      description:'this is the best gas station in the world',
-      review:['it is best!','i love it','fuck this station'],
-      deals:['15% discount for gas!','buy one Dr.Pepper get one free!']
-    //  picutre:HTMLImageElement;
-    }];
+    protected handleException(exception: any) {
+        var message = `${exception.status} : ${exception.statusText}\r\n${exception.message}`;
+        alert(message);
+        return Observable.throw(exception);
+    }
 
 }
-  // addDriver(newdriver:Driver[]) {
-  //   this.drivers.next(newdriver);
-  // }
 
-  // getDriver(): Observable<Driver[]> {
-  //   return this.drivers.asObservable();
-  // }
-}
+
+

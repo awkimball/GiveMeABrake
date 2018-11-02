@@ -1,9 +1,8 @@
-import { Owner } from './../domain/owner';
-import { Vehicle } from './../domain/vehicle';
-import { Driver } from './../domain/driver';
+import { Owner } from '../domain/models/owner';
+import { Vehicle } from '../domain/models/vehicle';
+import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit, ElementRef,ViewChild} from '@angular/core';
-import { NavServiceService } from './../nav-service.service';
 import { AccountService } from './../account.service';
 import { Router} from '@angular/router';
 
@@ -29,7 +28,7 @@ export class SignupComponent implements OnInit {
   showPage: boolean;
   isADriver:boolean;
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
+  constructor(public accountService:AccountService, public router: Router) {
     this.showPage = false;
     this.isADriver=false;
   }
@@ -49,31 +48,31 @@ export class SignupComponent implements OnInit {
   }
 
   addOwnerCheck() {
-    if(this.newDeal) {
-    this.newOwner.deals = [];
-    this.newOwner.deals.push(this.newDeal);
-    }
-    if(this.newReview) {
-      this.newOwner.review = [];
-      this.newOwner.review.push(this.newDeal);
-    }
+    // if(this.newDeal) {
+    // this.newOwner.deals = [];
+    // this.newOwner.deals.push(this.newDeal);
+    // }
+    // if(this.newReview) {
+    //   this.newOwner.review = [];
+    //   this.newOwner.review.push(this.newDeal);
+    // }
 
-    this.accountService.defaultOwner.push(this.newOwner);
-    this.newOwner = new Owner;
-    this.newDeal = '';
-    this.newReview = '';
+    // this.accountService.defaultOwner.push(this.newOwner);
+    // this.newOwner = new Owner;
+    // this.newDeal = '';
+    // this.newReview = '';
   }
 
   saveAccount() {
-    if(this.addACar) {
-      this.newDriver.vehicles = [];
-      this.newDriver.vehicles.push(this.newCar);}
-  //  this.savedDriver.push(this.newDriver);
+//     if(this.addACar) {
+//       this.newDriver.vehicles = [];
+//       this.newDriver.vehicles.push(this.newCar);}
+//   //  this.savedDriver.push(this.newDriver);
 
 
-   this.accountService.defaultDriver.push(this.newDriver);
-   this.newDriver = new Driver;
-   this.newCar = new Vehicle;
+//    this.accountService.defaultDriver.push(this.newDriver);
+//    this.newDriver = new Driver;
+//    this.newCar = new Vehicle;
   }
 
 }

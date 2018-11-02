@@ -1,8 +1,7 @@
-import { Owner } from './../domain/owner';
-import { Driver } from './../domain/driver';
+import { Owner } from '../domain/models/owner';
+import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit } from '@angular/core';
-import { NavServiceService } from './../nav-service.service';
 import { AccountService } from './../account.service';
 import { Subscription } from 'rxjs';
 
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
   // driverAccounts:Driver[] = [];
   // ownerAccounts:Owner[];
 
-  constructor(public accountService:AccountService, public navServiceService:NavServiceService, public router: Router) {
+  constructor(public accountService:AccountService, public router: Router) {
    }
 
   ngOnInit() {
@@ -31,30 +30,30 @@ export class LoginComponent implements OnInit {
   }
 
   checkAccount() {
-    for(const dv of this.accountService.defaultDriver) {
-      if(this.accountname === dv.username) {
-        if(this.password === dv.password) {
-          console.log('login');
-          this.accountService.setDriver = dv;
-          this.accountService.accountType=true;
-          this.router.navigate(['\home']);
-        } else {
-                console.log('Invalid password');
-              }
-      }
-    }
-    for(const dv of this.accountService.defaultOwner) {
-      if(this.accountname === dv.username) {
-        if(this.password === dv.password) {
-          console.log('login');
-          this.accountService.setOwner=dv;
-          this.accountService.accountType=false;
-          this.router.navigate(['\home']);
-        } else {
-                console.log('Invalid password');
-              }
-      }
-    }
+    // for(const dv of this.accountService.defaultDriver) {
+    //   if(this.accountname === dv.username) {
+    //     if(this.password === dv.password) {
+    //       console.log('login');
+    //       this.accountService.setDriver = dv;
+    //       this.accountService.accountType=true;
+    //       this.router.navigate(['\home']);
+    //     } else {
+    //             console.log('Invalid password');
+    //           }
+    //   }
+    // }
+    // for(const dv of this.accountService.defaultOwner) {
+    //   if(this.accountname === dv.username) {
+    //     if(this.password === dv.password) {
+    //       console.log('login');
+    //       this.accountService.setOwner=dv;
+    //       this.accountService.accountType=false;
+    //       this.router.navigate(['\home']);
+    //     } else {
+    //             console.log('Invalid password');
+    //           }
+    //   }
+    // }
     // this.accountService.getDriver().subscribe(account => {this.driverAccounts = account;
     //   for(const dv of this.driverAccounts) {
     //     if(this.accountname === dv.username) {

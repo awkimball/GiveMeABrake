@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
 import { RouterOutlet } from '@angular/router';
+import { Account } from '../domain/models/account';
 
 
 
@@ -16,18 +17,26 @@ import { RouterOutlet } from '@angular/router';
 
 
 export class ProfileComponent implements OnInit {
-  ngOnInit(): void {
 
-  }
+    account: Account;
 
-  constructor(public accountService:AccountService) {
+    ngOnInit(): void {
 
+        
 
-  }
+    }
 
-  prepareRoute(outlet: RouterOutlet) {
+    constructor(public accountService:AccountService) {
 
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+        this.accountService.getById(1).subscribe((account) => {
+            this.account = account;
+          });
+
+    }
+
+    prepareRoute(outlet: RouterOutlet) {
+
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
 
 }
