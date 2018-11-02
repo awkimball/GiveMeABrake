@@ -107,6 +107,6 @@ $app->get('/users', function ($request, $response, $args) {
         "SELECT * FROM users"
     );
     $sth->execute();
-    $users = $sth->fetchObject();
+    $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
