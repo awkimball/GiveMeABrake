@@ -1,45 +1,8 @@
-<div id="main">
+<div class="container">
+    <div class="col">
+        <div class="card" >
+            <h2 class="card-header">Welcome! {{ account.name }}</h2>
 
-
-<br>
-<div *ngIf="accountService.accountType" class="mainpage">
-    <h4 *ngIf="accountService.accountType">Welcome! Driver {{ accountService.setDriver.name }}</h4>
-    <hr>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  Last time you got oil changed was <strong>5pm Tuesday</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+        </div>
+    </div>
 </div>
-<div>
-<button class = "btn btn-info" id="station">See nearest gas stations</button>
-</div>
-<div>
-<button class = "btn btn-success" id="dealership">Find dealership</button>
-</div>
-<div>
-<button class = "btn btn-primary" id="oil">See price change</button>
-</div>
-</div>
-
-<div *ngIf="!accountService.accountType" class="mainpage">
-
-<h4 *ngIf="!accountService.accountType">Welcome! Shop Owner {{ accountService.setOwner.name }}</h4>
-<hr>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    There will be a customer come in through at <strong>5pm.</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div>
-  <button routerLink="/checkdeal" class = "btn btn-info" id="check" type="button">Check other gas stations</button>
-</div>
-<div>
-  <button routerLink="/deals" class = "btn btn-success" id="deal">My deals</button>
-</div>
-<div>
-  <button class = "btn btn-primary" id="notify">Notify my deals</button>
-</div>
-  </div>
-  </div>
