@@ -30,9 +30,9 @@ $app->get('/login', function ($request, $response, $args) {
     error_log(implode(" ", $values));
     error_log(implode(" ", $args));
     error_log($response);
-    
-    $sth->bindParam($values->username, $args['username']);
-    $sth->bindParam($values->password, $args['password']);
+
+    $sth->bindParam($values['username'], $args['username']);
+    $sth->bindParam($values['password'], $args['password']);
     
     $sth->execute();
     $users = $sth->fetchAll();
