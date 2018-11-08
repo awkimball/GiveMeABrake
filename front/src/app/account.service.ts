@@ -15,6 +15,7 @@ import { EmailValidator } from '@angular/forms';
 
 export class AccountService {
 
+
     protected endPoint = "http://aws.akimball.com:8080";
 
     protected httpOptions = {
@@ -38,7 +39,6 @@ export class AccountService {
         return this.httpClient
         .post<Account[]>(`${this.endPoint}/login`, request, this.httpOptions)
         .pipe(catchError(this.handleException));
-
 
     }
 

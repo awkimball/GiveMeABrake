@@ -11,10 +11,15 @@ import { fadeAnimation } from './animations';
   ]
 })
 export class AppComponent {
-  title = 'GiveMeABrake';
+    title = 'GiveMeABrake';
+    loggedIn: boolean;
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+    constructor() {
+        
+    }
+
+    prepareRoute(outlet: RouterOutlet) {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
 
 }

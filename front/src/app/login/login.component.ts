@@ -3,7 +3,7 @@ import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
 
@@ -14,62 +14,38 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  accountname='';
-  password = '';
+    email: string;
+    password: string;
 
-  // subscription: Subscription;
 
-  // driverAccounts:Driver[] = [];
-  // ownerAccounts:Owner[];
+    constructor(private accountService:AccountService, public router: Router) {
+        this.email = '';
+        this.password = ';'
+    }
 
-  constructor(public accountService:AccountService, public router: Router) {
-   }
+    ngOnInit() {
 
-  ngOnInit() {
+    }
 
-  }
+    checkAccount() {
 
-  checkAccount() {
-    // for(const dv of this.accountService.defaultDriver) {
-    //   if(this.accountname === dv.username) {
-    //     if(this.password === dv.password) {
-    //       console.log('login');
-    //       this.accountService.setDriver = dv;
-    //       this.accountService.accountType=true;
-    //       this.router.navigate(['\home']);
-    //     } else {
-    //             console.log('Invalid password');
-    //           }
-    //   }
-    // }
-    // for(const dv of this.accountService.defaultOwner) {
-    //   if(this.accountname === dv.username) {
-    //     if(this.password === dv.password) {
-    //       console.log('login');
-    //       this.accountService.setOwner=dv;
-    //       this.accountService.accountType=false;
-    //       this.router.navigate(['\home']);
-    //     } else {
-    //             console.log('Invalid password');
-    //           }
-    //   }
-    // }
-    // this.accountService.getDriver().subscribe(account => {this.driverAccounts = account;
-    //   for(const dv of this.driverAccounts) {
-    //     if(this.accountname === dv.username) {
-    //       if(this.password === dv.password) {
-    //         console.log('invalid password', dv.username, dv.password, this.accountname, this.password);
-    //         this.router.navigate(['\home']);
-    //       } else {
-    //         console.log('login');
-    //         this.router.navigate(['\home']);
-    //       }
-    //     }
-    //   }
+        if (this.email != '' && this.password != '') {
 
-    //   console.log('invalid username');
-    // });
-  }
+            this.accountService.login(this.email,this.password).subscribe((accounts) => {
+
+                if (accounts.length > 0) {
+
+                    alert(JSON.stringify(accounts));
+
+                } else {
+
+                    alert('failure');
+                }
+        
+            });
+        }
+
+    }
 
 
 }
