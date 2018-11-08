@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private accountService:AccountService, public router: Router) {
         this.email = '';
-        this.password = ';'
+        this.password = ''
     }
 
     ngOnInit() {
@@ -35,14 +35,17 @@ export class LoginComponent implements OnInit {
 
                 if (accounts.length > 0) {
 
-                    alert(JSON.stringify(accounts));
+                    alert('Authenticated Successfully!');
 
                 } else {
 
-                    alert('failure');
+                    alert('User not found');
                 }
         
             });
+        } else {
+
+            alert('fields empty!');
         }
 
     }

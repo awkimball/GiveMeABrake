@@ -33,16 +33,9 @@ $app->post('/login', function ($request, $response) {
     
     $sth->execute();
     $users = $sth->fetchAll();
-    if ($users) {
+    
+    return $this->response->withJson($users);
 
-        return $this->response->withJson($users);
-
-    } else {
-
-        return $this->response->withStatus(404)
-            ->withHeader('Content-Type', 'text/html')
-            ->write(implode(',',$values));
-    }
 });
 $app->get('/user/[{idusers}]', function ($request, $response, $args) {
     $sth = $this->db->prepare(
