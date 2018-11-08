@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { EmailValidator } from '@angular/forms';
 
 
 @Injectable({
@@ -26,6 +27,20 @@ export class AccountService {
     constructor(
         protected httpClient: HttpClient
     ) {}
+
+    login(email: string, pwd: string): Observable<Account[]> {
+
+        let request = {
+            "email": email,
+            "password": pwd
+        };
+
+        return this.httpClient
+        .post<Account[]>(`${this.endPoint}/login`, request, this.httpOptions)
+        .pipe(catchError(this.handleException));
+
+
+    }
 
     getById(id: number): Observable<Account> {
         return this.httpClient

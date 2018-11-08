@@ -20,7 +20,7 @@ $app->get('/users', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-$app->get('/login', function ($request, $response, $args) {
+$app->post('/login', function ($request, $response) {
     $sth = $this->db->prepare(
         "SELECT * FROM users WHERE email=:email AND password=:password"
     );
@@ -41,7 +41,7 @@ $app->get('/login', function ($request, $response, $args) {
 
         return $this->response->withStatus(404)
             ->withHeader('Content-Type', 'text/html')
-            ->write('Page not found');
+            ->write(implode(',',$values));
     }
 });
 $app->get('/user/[{idusers}]', function ($request, $response, $args) {
