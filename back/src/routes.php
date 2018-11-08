@@ -24,9 +24,13 @@ $app->get('/login', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM users WHERE username=:username AND password=:password"
     );
-    $sth->bindParam("username", $args['username']);
-    $sth->bindParam("password", $args['password']);
-
+    
+    $values = $request->getParsedBody();
+    $sth->bindParam($values->username, $args['username']);
+    $sth->bindParam($values->password, $args['password']);
+    error_log(implode(" ", $values));
+    error_log(implode(" ", $args));
+    error_log($response);
     $sth->execute();
     $users = $sth->fetchAll();
     error_log($request);
