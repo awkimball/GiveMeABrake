@@ -4,7 +4,7 @@ return [
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
         'db' => [
-            'host' => 'aws.akimball.com:3308',
+            'host' => 'aws.akimball.com:8080',
             'dbname' => 'gmab',
             'user' => 'team2',
             'pass' => 'team2'
