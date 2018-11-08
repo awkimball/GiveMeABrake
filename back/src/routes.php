@@ -28,15 +28,21 @@ $app->get('/login', function ($request, $response, $args) {
     $email = $values['email'];
     $password = $values['password'];
 
-    error_log(implode(",", $values));
-    error_log($response);
-
     $sth->bindParam(':email', $email);
     $sth->bindParam(':password', $password);
     
     $sth->execute();
     $users = $sth->fetchAll();
-    return $this->response->withJson($users);
+    if ($users) {
+
+        return $this->response->withJson($users);
+
+    } else {
+
+        return $this->response->withStatus(404)
+            ->withHeader('Content-Type', 'text/html')
+            ->write('Page not found');
+    }
 });
 $app->get('/user/[{idusers}]', function ($request, $response, $args) {
     $sth = $this->db->prepare(
