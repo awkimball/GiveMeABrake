@@ -29,6 +29,7 @@ $app->get('/login', function ($request, $response, $args) {
 
     $sth->execute();
     $users = $sth->fetchAll();
+    error_log($args);
     error_log($response);
     return $this->response->withJson($users);
 });
