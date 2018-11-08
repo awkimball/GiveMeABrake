@@ -22,23 +22,21 @@ $app->get('/users', function ($request, $response, $args) {
 });
 $app->get('/login', function ($request, $response, $args) {
     $sth = $this->db->prepare(
-        "SELECT * FROM users WHERE username=:username AND password=:password"
+        "SELECT * FROM users WHERE email=:email AND password=:password"
     );
-
     $values = $request->getParsedBody();
+    $email = $values['email'];
+    $password = $values['password'];
 
-    error_log(implode(" ", $values));
+    error_log(implode(",", $values));
     error_log(implode(" ", $args));
     error_log($response);
 
-    $sth->bindParam($values['username'], $args['username']);
-    $sth->bindParam($values['password'], $args['password']);
+    $sth->bindParam(':email', $email);
+    $sth->bindParam(':password', $args['password']);
     
     $sth->execute();
     $users = $sth->fetchAll();
-    error_log($request);
-    error_log(implode(" ", $args));
-    error_log($response);
     return $this->response->withJson($users);
 });
 $app->get('/user/[{idusers}]', function ($request, $response, $args) {
