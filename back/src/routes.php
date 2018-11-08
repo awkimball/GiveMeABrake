@@ -29,11 +29,10 @@ $app->get('/login', function ($request, $response, $args) {
     $password = $values['password'];
 
     error_log(implode(",", $values));
-    error_log(implode(" ", $args));
     error_log($response);
 
     $sth->bindParam(':email', $email);
-    $sth->bindParam(':password', $args['password']);
+    $sth->bindParam(':password', $password);
     
     $sth->execute();
     $users = $sth->fetchAll();
