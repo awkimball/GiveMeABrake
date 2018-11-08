@@ -66,6 +66,12 @@ export class AccountService {
         return Observable.throw(exception);
     }
 
+    getStatus(): boolean {
+
+        let temp = localStorage.getItem('loggedIn');
+        return ((temp == 'true') ? true : (temp == 'false') ? false : false);
+    }
+
 }
 
 

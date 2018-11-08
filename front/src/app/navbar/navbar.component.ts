@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
+import { longStackSupport } from 'q';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +8,21 @@ import { AccountService } from './../account.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public accountService:AccountService) {
-  }
+    constructor(public accountService:AccountService) {
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+
+            
+
+    }
+    
+    logout() {
+
+        localStorage.setItem('loggedIn', 'false');
+        localStorage.setItem('uid', 'null');
+
+    }
+
 }
