@@ -12,6 +12,14 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
+$app->get('/users', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM users"
+    );
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
 $app->get('/login', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM users WHERE username=:username AND password=:password"
