@@ -1,50 +1,78 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
+<div class="container col-md-7">
+    <div class="">
+        <div class="">
             <div class="card">
-                <div class="h5 card-header">
-                Profile
-                <button class='btn btn-dark float-right' [routerLink]="[ '\edit' ]">
-                  Edit Profile
-                </button>
+                <div class="card-header my-auto">
+                    <span class='align-middle' style='font-size: 1.5rem'>Profile</span>
+                    <button class='btn btn-dark float-right' [routerLink]="[ '\edit' ]">
+                    Edit Profile
+                    </button>
                 </div>
-                <div class="card-body">
-                  <div class="form-group">
-                      <label for="account_name">
-                        <b *ngIf='account.account_type == 0'>Name: </b>
-                        <b *ngIf='account.account_type == 1'>Company Name: </b>
+                <div class="container card-body col-md-10">
+                    <div class='row'>
+                        <div class='col-md-7 mt-2'>
+                            <div class="form-group">
+                                <label for="account_name">
+                                    <b *ngIf='account.account_type == 0'>Name: </b>
+                                    <b *ngIf='account.account_type == 1'>Company Name: </b>
 
-                      </label>
-                      <input type="text" id="account_name" class="form-control" [(ngModel)]="account.name" style="pointer-events: none;"/>
+                                </label>
+                                <input type="text" id="account_name" class="form-control" [(ngModel)]="account.username" style="pointer-events: none;"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="account_email">
+                                    <b>Email: </b>
+                                </label>
+                                <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" style="pointer-events: none;"/>
+                            </div>
+                        </div>
+
+                        <div class='col-md-4 ml-auto'>
+                            <img class='my-0' src="https://placeholdit.co//i/180x180?&text=User Photo" alt="">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="account_email">
-                            <b>Email: </b>
-                        </label>
-                        <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" style="pointer-events: none;"/>
+
+                    <div class='row mt-4'>
+                        <div class='form-group col-md-6 mr-auto'>
+                            <label for="phonebox"><b>Phone</b></label>
+                            <input class='form-control' type="text" name="profphonebox" id="phonebox" [ngModel]='account.phone' style="pointer-events: none;">
+                        </div>
+                        <div class='form-group col-md-6 ml-auto'>
+                                <label for="zipbox"><b>Zip/Postal Code</b></label>
+                                <input class='form-control' type="text" name="profzipbox" id="zipbox" [ngModel]='account.zipcode' style="pointer-events: none;">
+                            </div>
                     </div>
-                    <div class="form-group">
-                        <label for="employeeCheck">
-                          <b>Business? </b>
-                        </label>
-                        <input class="form-check ml-1" name="employed" type="checkbox" id="employeeCheck" [(ngModel)]="account.account_type" disabled>
-                    </div>
+                    
                     <div class="form-group" *ngIf='account.account_type == 0'>
                         <label for="dept_form">
-                          <b>My Car: </b>
+                          <b>My Cars </b>
                         </label>
-                        <table class='card'>
-                          <th class='card-header'>{{account.name}} {{account.name}} {{account.name}}</th>
-                          <div class='card-body'>
+                        <ul>
+                            <li class='card' *ngFor='let car of cars'>
+                            <div class='card-header'>{{account.name}} {{account.name}} {{account.name}}</div>
+                            <div class='card-body'></div>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div>
+                        <div class="form-group">
+                            <label for="corporatebtn">
+                                <b>Corporate</b>
+                            </label>
+                            <br>
+                            <button class="btn btn-success"   id="corporatebtn"  disabled>Apply</button>
+                            <br>
+                            <small class='text-muted'>Apply for a corporate account here</small>
+                        </div>   
+                        
+                        <div class='form-group'></div>
+                    </div>
+                    
 
-                          </div>
-
-                        </table>
-                      </div>
-
-
-                </div>
+                    
+        
             </div>
         </div>
     </div>

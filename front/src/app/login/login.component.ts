@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
                     alert('Authenticated Successfully!');
                     localStorage.setItem('loggedIn', 'true');
                     localStorage.setItem('uid', `${accounts[0].idusers}`);
+                    this.router.navigate(['home']);
 
                 } else {
 

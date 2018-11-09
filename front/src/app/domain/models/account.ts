@@ -5,8 +5,7 @@ export interface Account {
     password:string;
     email:string;
     zipcode:number;
-    phone?:number;
-    name:string;
+    phone:number;
     account_type:number;
 
 }

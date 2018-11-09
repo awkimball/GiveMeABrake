@@ -22,15 +22,15 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit(): void {
 
-        
+        this.accountService.getById(+localStorage.getItem('uid')).subscribe((account) => {
+            this.account = account;
+          });
 
     }
 
     constructor(public accountService:AccountService) {
 
-        this.accountService.getById(1).subscribe((account) => {
-            this.account = account;
-          });
+        
 
     }
 

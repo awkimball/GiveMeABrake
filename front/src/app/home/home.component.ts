@@ -12,10 +12,6 @@ export class HomeComponent implements OnInit {
   account: Account;
 
   constructor(public accountService:AccountService) {
-      
-  }
-
-  ngOnInit() {
 
     if (localStorage.getItem('loggedIn') == 'true') {
 
@@ -25,6 +21,12 @@ export class HomeComponent implements OnInit {
 
         });
     }
+      
+  }
+
+  ngOnInit() {
+
+    
 
   }
 
