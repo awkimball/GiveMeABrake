@@ -1,0 +1,21 @@
+<div class="navbar navbar-light bg-light mb-4 navbar-expand-lg">
+  <div class="navbar navbar-nav">
+
+      <a [routerLink]="[ '\home' ]" routerLinkActive="active" class="h4 nav-link mt-auto mb-auto">Give Me a Brake!</a>
+      
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="[ 'profile' ]">Profile</a>
+            </li>
+          </ul>
+        </div>
+    
+      <button *ngIf='accountService.getStatus()' (click)='logout()' [routerLink]="[ 'login' ]" class = "btn btn-dark float-right" id="logout">Log Out</button>
+      <button *ngIf='!accountService.getStatus()' [routerLink]="[ 'login' ]" class = "btn btn-primary float-right" id="loginbutton">Log In</button>
+
+
+
+
+  </div>

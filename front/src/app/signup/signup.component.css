@@ -1,0 +1,14 @@
+.card-header{
+text-align: center;
+}
+
+#checktitle{
+  text-align: center;
+}
+#checkDriver{
+  margin:1em;
+}
+
+#backtohome{
+float:right;
+}
