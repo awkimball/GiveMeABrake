@@ -62,7 +62,7 @@ $app->post('/register', function ($request, $response) {
     $sth->execute();
     return $this->response->withJson($input);
 });
-$app->put('/account/{username}', function ($request, $response) {
+$app->put('/account/{userid}', function ($request, $response) {
 	$input = $request->getParsedBody();
 	$sql = "UPDATE users SET email = :email, username = :username, password = :password,
 			zipcode = : zipcode, account_type = :account_type WHERE idusers = :idusers";
