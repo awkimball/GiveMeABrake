@@ -65,8 +65,9 @@ $app->post('/register', function ($request, $response) {
 $app->put('/user/{idusers}', function ($request, $response) {
 	$input = $request->getParsedBody();
 	$sql = "UPDATE users SET email = :email, username = :username, password = :password,
-			zipcode = : zipcode, account_type = :account_type, phone=:phone WHERE idusers = :idusers";
-	$sth = $this->db->prepare($sql);
+			zipcode = :zipcode, account_type = :account_type, phone = :phone WHERE idusers = :idusers";
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam("idusers", $input['idusers']);
     $sth->bindParam("email", $input['email']);
     $sth->bindParam("username", $input['username']);
     $sth->bindParam("password", $input['password']);
