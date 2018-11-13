@@ -37,7 +37,7 @@ $app->post('/login', function ($request, $response) {
     return $this->response->withJson($users);
 
 });
-$app->get('/user/[{idusers}]', function ($request, $response, $args) {
+$app->get('/user/{idusers}', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM users WHERE idusers=:idusers"
     );
@@ -62,7 +62,7 @@ $app->post('/register', function ($request, $response) {
     $sth->execute();
     return $this->response->withJson($input);
 });
-$app->put('/user/{userid}', function ($request, $response) {
+$app->put('/user/{idusers}', function ($request, $response) {
 	$input = $request->getParsedBody();
 	$sql = "UPDATE users SET email = :email, username = :username, password = :password,
 			zipcode = : zipcode, account_type = :account_type, phone=:phone WHERE idusers = :idusers";
