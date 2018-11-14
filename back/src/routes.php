@@ -215,9 +215,10 @@ $app->get('/user/{idusers}/deals', function ($request, $response, $args) {
 $app->put('/user/{idusers}/deals/{iddeal}', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "UPDATE deals
-    SET price=:price, name=:name, description=:description WHERE iddeal=:iddeal";
+    SET price=:price, notify=:notify, name=:name, description=:description WHERE iddeal=:iddeal";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("price", $input['price']);
+    $sth->bindParam("notify", $input['notify']);
     $sth->bindParam("name", $input['name']);
     $sth->bindParam("description", $input['description']);
     $sth->execute();
@@ -226,10 +227,29 @@ $app->put('/user/{idusers}/deals/{iddeal}', function ($request, $response) {
 
 
 
+$app->post('/add_review', function ($request, $response) {
+    $input = $request->getParsedBody();
+    $sql = "INSERT INTO 
+        review (idusers, shop_name, comment, rating) 
+        VALUES (:idusers, :shop_name, :comment, :rating)";
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam("idusers", $input['idusers']);
+    $sth->bindParam("shop_name", $input['shop_name']);
+    $sth->bindParam("comment", $input['comment']);
+    $sth->bindParam("rating", $input['rating']);
 
+    $sth->execute();
+    return $this->response->withJson($input);
+});
 
+$app->get('/user/{idusers}/reviews', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM review WHERE idusers=:idusers AND shop_name=:shop_name"
+    );
+    $sth->bindParam("idusers", $args['idusers']);
+    $sth->bindParam("shop_name", $args['shop_name']);
 
-
-
-
-
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
