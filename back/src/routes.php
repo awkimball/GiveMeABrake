@@ -253,3 +253,13 @@ $app->get('/user/{idusers}/reviews', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
+
+$app->get('/user/{zipcode}/shop', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM shopowner UNION users WHERE users.zipcode=:users.zipcode"
+    );
+    $sth->bindParam("zipcode", $args['zipcode']);
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
