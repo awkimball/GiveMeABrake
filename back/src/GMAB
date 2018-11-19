@@ -46,7 +46,7 @@ CREATE TABLE `gmab`.`zip` (
   `idusers` INT NOT NULL,
   `iddeal` INT,
   `price` FLOAT NULL,
-  `notify` BOOL,
+  `notify` BOOLEAN,
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   PRIMARY KEY (`idusers`));
@@ -59,4 +59,5 @@ CREATE TABLE `gmab`.`zip` (
   PRIMARY KEY (`idusers`));
 
 
-
+  
+  
