@@ -9,14 +9,14 @@ CREATE TABLE `gmab`.`users` (
   `username` VARCHAR(64) NULL,
   `email` VARCHAR(64) NULL,
   `password` VARCHAR(64) NULL,
-  'phone' VARCHAR(10) NULL,
+  `phone` VARCHAR(10) NULL,
   `zipcode` INT(5) NULL,
   `account_type` INT NULL DEFAULT 0,
   PRIMARY KEY (`idusers`));
 
 CREATE TABLE `gmab`.`vehicle` (
   `idusers` INT NOT NULL,
-  `vin` VARCHAR(17) NOT NULL DEFAULT 'XXXXXXXXXXXXXXXXX',
+  `vid` VARCHAR(17) NOT NULL DEFAULT 'XXXXXXXXXXXXXXXXX',
   `make` VARCHAR(45) NULL,
   `model` VARCHAR(45) NULL,
   `year` INT NOT NULL,
@@ -38,14 +38,23 @@ CREATE TABLE `gmab`.`shopowner` (
   PRIMARY KEY (`idusers`));
 
 CREATE TABLE `gmab`.`zip` (
-  `zipcode` INT(6) NOT NULL DEFAULT 0,
+  `zipcode` NT(6) NOT NULL DEFAULT 0,
   `longitude` INT NULL,
   `latitude` INT NULL,
   PRIMARY KEY (`zipcode`));
   
   CREATE TABLE `gmab`.`deals` (
   `idusers` INT NOT NULL,
+  `iddeal` INT,
   `price` FLOAT NULL,
-  `name` VARCHAR(45) NULL,
+  `notify` BOOLEAN,
+  `name` VARCHAR(64) NULL,
   `description` VARCHAR(500) NULL,
+  PRIMARY KEY (`idusers`));
+  
+  CREATE TABLE `gmab`.`review` (
+  `idusers` INT NOT NULL,
+  `shop_name` VARCHAR(45) NULL,
+  `comment` VARCHAR(256) NULL,
+  `rating` INT NULL,
   PRIMARY KEY (`idusers`));
