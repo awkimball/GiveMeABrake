@@ -59,6 +59,12 @@ CREATE TABLE `gmab`.`zips` (
   `comment` VARCHAR(256) NULL,
   `rating` INT NULL,
   PRIMARY KEY (`idreview`));
+               
+ CREATE TABLE `gmab`.`favorites` (
+  `iduser` INT NOT NULL,
+  `idshop` INT NOT NULL,
+  PRIMARY KEY (`iduser`));
+
 
 
   
