@@ -5,47 +5,67 @@ show tables;
   
   
 CREATE TABLE `gmab`.`users` (
-  `idusers` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(64) NULL,
-  `email` VARCHAR(64) NULL,
-  `password` VARCHAR(64) NULL,
-  'phone' VARCHAR(10) NULL,
-  `zipcode` INT(5) NULL,
-  `account_type` INT NULL DEFAULT 0,
-  PRIMARY KEY (`idusers`));
+  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `zipcode` INT NULL,
+  `account_type` INT NULL,
+  PRIMARY KEY (`iduser`));
 
-CREATE TABLE `gmab`.`vehicle` (
-  `idusers` INT NOT NULL,
-  `vin` VARCHAR(17) NOT NULL DEFAULT 'XXXXXXXXXXXXXXXXX',
+CREATE TABLE `gmab`.`vehicles` (
+  `vin` INT NOT NULL,
+  `iduser` INT NULL,
   `make` VARCHAR(45) NULL,
   `model` VARCHAR(45) NULL,
-  `year` INT NOT NULL,
+  `year` INT NULL,
   `miles` INT NULL,
   `tire_rotation_miles` INT NULL,
   `oil_change_miles` INT NULL,
   `transmission_check_miles` INT NULL,
-  `last_inspection_date` DATETIME NULL DEFAULT NULL,
+  `last_inspection_date` DATETIME NULL,
   `general_description` VARCHAR(500) NULL,
-  PRIMARY KEY (`idusers`));
+  PRIMARY KEY (`vin`));
 
-CREATE TABLE `gmab`.`shopowner` (
-  `idusers` INT NOT NULL,
+CREATE TABLE `gmab`.`shops` (
+  `idshop` INT NOT NULL AUTO_INCREMENT,
+  `iduser` INT NULL,
   `gas_price` INT NULL,
   `address` VARCHAR(256) NULL,
-  `shop_email` VARCHAR(64) NULL,
-  `shop_name` VARCHAR(64) NULL,
+  `shop_email` VARCHAR(45) NULL,
+  `shop_name` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
-  PRIMARY KEY (`idusers`));
+  PRIMARY KEY (`idshop`));
 
-CREATE TABLE `gmab`.`zip` (
-  `zipcode` INT(6) NOT NULL DEFAULT 0,
-  `longitude` INT NULL,
-  `latitude` INT NULL,
+CREATE TABLE `gmab`.`zips` (
+  `zipcode` INT NOT NULL,
+  `longitude` DOUBLE NULL,
+  `latitude` DOUBLE NULL,
   PRIMARY KEY (`zipcode`));
   
   CREATE TABLE `gmab`.`deals` (
-  `idusers` INT NOT NULL,
+  `iddeal` INT NOT NULL AUTO_INCREMENT,
+  `idshop` INT NULL,
   `price` FLOAT NULL,
+  `notify` BOOLEAN,
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
-  PRIMARY KEY (`idusers`));
+  PRIMARY KEY (`iddeal`));
+  
+  CREATE TABLE `gmab`.`reviews` (
+  `idreview` INT NOT NULL AUTO_INCREMENT,
+  `idshop` INT NULL,
+  `iduser` INT NULL,
+  `comment` VARCHAR(256) NULL,
+  `rating` INT NULL,
+  PRIMARY KEY (`idreview`));
+               
+ CREATE TABLE `gmab`.`favorites` (
+  `iduser` INT NOT NULL,
+  `idshop` INT NOT NULL,
+  PRIMARY KEY (`iduser`));
+
+
+
+  
+  
