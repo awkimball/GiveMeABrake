@@ -144,7 +144,7 @@ $app->post('/add_vehicle', function ($request, $response) {
         :transmission_check_miles, :last_inspection_date, :general_description)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
-    $sth->bindParam("vid", $input['vid']);
+    $sth->bindParam("vin", $input['vin']);
     $sth->bindParam("make", $input['make']);
     $sth->bindParam("model", $input['model']);
     $sth->bindParam("year", $input['year']);
@@ -219,22 +219,6 @@ $app->post('/add_deal', function ($request, $response) {
     $sth->execute();
     return $this->response->withJson($input);
 });
-
-
-
-// $app->put('/user/{iduser}/shops/{idshop}/updatedeal', function ($request, $response) {
-//     $input = $request->getParsedBody();
-//     $sql = "UPDATE deals
-//     SET price=:price, notify=:notify, name=:name, description=:description WHERE iddeal=:iddeal";
-//     $sth = $this->db->prepare($sql);
-//     $sth->bindParam("price", $input['price']);
-//     $sth->bindParam("notify", $input['notify']);
-//     $sth->bindParam("name", $input['name']);
-//     $sth->bindParam("description", $input['description']);
-//     $sth->execute();
-//     return $this->response->withJson($input);
-// });
-
 
 
 $app->post('/add_review', function ($request, $response) {
