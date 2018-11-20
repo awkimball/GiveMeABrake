@@ -228,7 +228,7 @@ $app->post('/add_review', function ($request, $response) {
         VALUES (:iduser, :idshop, :comment, :rating)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
-    $sth->bindParam("shop_name", $input['shop_name']);
+    $sth->bindParam("idshop", $input['idshop']);
     $sth->bindParam("comment", $input['comment']);
     $sth->bindParam("rating", $input['rating']);
 
