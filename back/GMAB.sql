@@ -65,6 +65,12 @@ CREATE TABLE `gmab`.`zips` (
   `idshop` INT NOT NULL,
   PRIMARY KEY (`iduser`));
 
+CREATE TABLE `gmab`.`appointments` (
+  `idapt` INT NOT NULL,
+  `iduser` INT NOT NULL,
+  `idshop` INT NOT NULL,
+  `date` DATE NULL,
+  PRIMARY KEY (`idapt`));
 
 
   
