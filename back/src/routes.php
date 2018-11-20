@@ -250,7 +250,7 @@ $app->get('/user/{iduser}/shops/{idshop}/reviews', function ($request, $response
 
 $app->get('/nearby_shops/{zipcode}', function ($request, $response, $args) {
     $sth = $this->db->prepare(
-        "SELECT * FROM shops UNION users WHERE users.zipcode=:zipcode"
+        "SELECT * FROM shops JOIN users ON shops.iduser=users.iduser WHERE users.zipcode=:zipcode"
     );
     $sth->bindParam("zipcode", $args['zipcode']);
     $sth->execute();
