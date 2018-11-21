@@ -275,7 +275,7 @@ $app->post('/user/{iduser}/add_favorite', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
         favorites (iduser, idshop) 
-        VALUES (:iduser, :idshop";
+        VALUES (:iduser, :idshop)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
     $sth->bindParam("idshop", $input['idshop']);
@@ -298,7 +298,7 @@ $app->post('/add_appointment', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
         appointments (idapt, iduser, idshop, date) 
-        VALUES (:idapt, :iduser, :idshop, :date";
+        VALUES (:idapt, :iduser, :idshop, :date)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("idapt", $input['idapt']);
     $sth->bindParam("iduser", $input['iduser']);
