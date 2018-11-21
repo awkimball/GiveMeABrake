@@ -183,7 +183,7 @@ $app->put('/user/{iduser}/vehicle/{vid}', function ($request, $response) {
 });
 
 //An update statement solely for vehicle miles to be used to for the Update Miles button
-$app->put('/user/{iduser}/vehicle/{vid}', function ($request, $response) {
+$app->put('/user/{iduser}/vehicle_miles/{vid}', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "UPDATE vehicles
         SET miles=:miles WHERE iduser = :iduser AND vid = :vid";
