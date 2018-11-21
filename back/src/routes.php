@@ -294,7 +294,7 @@ $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
 });
 
 
-$app->post('/add_appointment, function ($request, $response) {
+$app->post('/add_appointment', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
         appointments (idapt, iduser, idshop, date) 
@@ -316,7 +316,7 @@ $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
     $sth->execute();
     $users = $sth->fetchAll();
     return $this->response->withJson($users); 
-
+});
 
 
 
