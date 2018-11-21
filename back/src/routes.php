@@ -158,7 +158,7 @@ $app->post('/add_vehicle', function ($request, $response) {
     return $this->response->withJson($input);
 });
 
-$app->put('/user/{iduser}/vehicle', function ($request, $response) {
+$app->put('/user/{iduser}/vehicle/{vid}', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "UPDATE vehicles
         SET iduser = :iduser, vid=:vid, make=:make, model=:model, year=:year, miles=:miles,
@@ -177,6 +177,18 @@ $app->put('/user/{iduser}/vehicle', function ($request, $response) {
     $sth->bindParam("transmission_check_miles", $input['transmission_check_miles']);
     $sth->bindParam("last_inspection_date", $input['last_inspection_date']);
     $sth->bindParam("general_description", $input['general_description']);
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
+
+//An update statement solely for vehicle miles to be used to for the Update Miles button
+$app->put('/user/{iduser}/vehicle/{vid}', function ($request, $response) {
+    $input = $request->getParsedBody();
+    $sql = "UPDATE vehicles
+        SET miles=:miles WHERE iduser = :iduser AND vid = :vid";
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam("miles", $input['miles']);
     $sth->execute();
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
@@ -257,3 +269,54 @@ $app->get('/nearby_shops/{zipcode}', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
+
+
+$app->post('/user/{iduser}/add_favorite', function ($request, $response) {
+    $input = $request->getParsedBody();
+    $sql = "INSERT INTO 
+        favorites (iduser, idshop) 
+        VALUES (:iduser, :idshop";
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam("iduser", $input['iduser']);
+    $sth->bindParam("idshop", $input['idshop']);
+    $sth->execute();
+    return $this->response->withJson($input);
+});
+
+$app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM favorites  WHERE iduser=:iduser"
+    );
+    $sth->bindParam("iduser", $args['iduser']);
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
+
+
+$app->post('/add_appointment, function ($request, $response) {
+    $input = $request->getParsedBody();
+    $sql = "INSERT INTO 
+        appointments (idapt, iduser, idshop, date) 
+        VALUES (:idapt, :iduser, :idshop, :date";
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam("idapt", $input['idapt']);
+    $sth->bindParam("iduser", $input['iduser']);
+    $sth->bindParam("idshop", $input['idshop']);
+    $sth->bindParam("idapt", $input['\date']); //I think the backslash is needed
+$sth->execute();
+    return $this->response->withJson($input);
+});
+
+$app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM favorites  WHERE iduser=:iduser"
+    );
+    $sth->bindParam("iduser", $args['iduser']);
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users); 
+
+
+
+
