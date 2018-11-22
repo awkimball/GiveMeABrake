@@ -308,15 +308,15 @@ $sth->execute();
     return $this->response->withJson($input);
 });
 
-$app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
-    $sth = $this->db->prepare(
-        "SELECT * FROM favorites  WHERE iduser=:iduser"
-    );
-    $sth->bindParam("iduser", $args['iduser']);
-    $sth->execute();
-    $users = $sth->fetchAll();
-    return $this->response->withJson($users); 
-});
+// $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
+//     $sth = $this->db->prepare(
+//         "SELECT * FROM favorites  WHERE iduser=:iduser"
+//     );
+//     $sth->bindParam("iduser", $args['iduser']);
+//     $sth->execute();
+//     $users = $sth->fetchAll();
+//     return $this->response->withJson($users); 
+// });
 
 
 
