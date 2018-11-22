@@ -1,5 +1,3 @@
-import { Owner } from '../domain/models/owner';
-import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';

@@ -1,6 +1,8 @@
-
-import { Owner } from './domain/models/owner';
-import { Driver } from './domain/models/driver';
+import { Zipcode } from './domain/models/zipcode';
+import { Vehicle } from './domain/models/vehicle';
+import { Shop } from './domain/models/shop';
+import { Review } from './domain/models/review';
+import { Deals } from './domain/models/deals';
 import { Account } from './domain/models/account'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -48,15 +50,28 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
-    add(account: Account): Observable<Account> {
+    register(account: Account): Observable<Account> {
         return this.httpClient
-        .post<Account>(this.endPoint, account, this.httpOptions)
+        .post<Account>(`${this.endPoint}/register`, account, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
     update(id: number, account: Account): Observable<Account> {
         return this.httpClient
         .put<Account>(`${this.endPoint}/${id}`, account, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+
+    addShop(shop:Shop): Observable<Shop> {
+        return this.httpClient
+        .post<Shop>(`${this.endPoint}/register_shop`, shop, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    addVehicle(vehicle:Vehicle): Observable<Vehicle> {
+        return this.httpClient
+        .post<Vehicle>(`${this.endPoint}/add_vehicle`, Vehicle, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
