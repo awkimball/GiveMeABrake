@@ -56,6 +56,18 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    getShop(id: number): Observable<Shop[]> {
+        return this.httpClient
+        .get<Shop[]>(`${this.endPoint}/user/${id}/shops`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getVehicle(id: number): Observable<Vehicle[]> {
+        return this.httpClient
+        .get<Vehicle[]>(`${this.endPoint}/user/${id}/vehicles`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     register(account: Account): Observable<Account> {
         return this.httpClient
         .post<Account>(`${this.endPoint}/register`, account, this.httpOptions)

@@ -1,8 +1,45 @@
-<div class="container">
-    <div class="">
-        <div class="card" >
-            <h2 class="card-header">Welcome! {{ account.username }}</h2>
-
-        </div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#isNew" #openModal [hidden]="true">click to open</button>
+<div id="isNew" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="checktitle">Welcome to GiveMeABrake, let's start adding your information</h4>
+      </div>
+      <div class="modal-body">
+        <button type="button" *ngIf="account.account_type ==0"  class="btn btn-default col-md-4" data-dismiss="modal" id="addVehicle" routerLink="/profile">Add my car info</button>
+        <button type="button" *ngIf="account.account_type ==1" class="btn btn-default col-md-4" data-dismiss="modal"id="addShop" routerLink="/profile">Add my shop info</button>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron" *ngIf="isLogin === false">
+        <h1 class="display-4">Welcome to GiveMeABrake! </h1>
+        <p class="lead">The best oil & gas application in the world!</p>
+        <hr class="my-4">
+        <p>We have some brand new features, log in to explore now!</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button" routerLink="/login">Log in</a>
+      </div>
+
+
+      <div *ngIf="isLogin === true">
+          <!-- <div>
+              <img src="./../../assets/pic.jpg" alt="" class = "float-right"/>
+          </div> -->
+          <div class = "card">
+              <div class = "card-header"></div>
+              <div class = "card-body">
+                  <h5 class="card-title">Welcome {{account.username}}!</h5>
+                  <div>
+                  <p class="card-text">Your current location is {{account.zipcode}}</p>
+                  <a href="#" class="btn btn-outline-secondary btn-sm">Change location</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
+
+<div>
+    <pre>{{account | json}}</pre>
 </div>
