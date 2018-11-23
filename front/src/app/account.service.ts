@@ -44,6 +44,12 @@ export class AccountService {
 
     }
 
+    getAllusers(): Observable<Account[]> {
+        return this.httpClient
+        .get<Account[]>(`${this.endPoint}/users`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     getById(id: number): Observable<Account> {
         return this.httpClient
         .get<Account>(`${this.endPoint}/user/${id}`, this.httpOptions)

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
                     alert('Authenticated Successfully!');
                     localStorage.setItem('loggedIn', 'true');
-                    localStorage.setItem('uid', `${accounts[0].idusers}`);
+                    localStorage.setItem('uid', `${accounts[0].iduser}`);
                     this.router.navigate(['home']);
 
                 } else {

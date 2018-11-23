@@ -116,7 +116,7 @@
             </div>
               
             </div>
-            <br />
+            <!-- <br />
           <div *ngIf="newAccount.account_type ===0">
               <div class="form-group">
                   <label for="account_make">
@@ -217,168 +217,18 @@
                                   </div>
                               </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"> -->
           </div>
         </div>
-        <!-- <button class="btn btn-outline-primary" type="button" (click)="addCarCheck()" [disabled]="(!addACar&&( driverusername.errors||account_email.errors
-        || driverpassword.errors|| driverzipcode.errors|| driverphone.errors|| drivername.errors))">
+        <button class="btn btn-outline-primary" type="button"  (click)="saveAccount()" [disabled]="( accnoutusername.errors||account_email.errors
+        || accountpassword.errors|| accountzipcode.errors||newAccount.account_type === -1)">
           Sign up
         </button>
-        <button routerLink="" class="btn btn-outline-primary" type="button" id="backtohome">
+        <button routerLink="\login" class="btn btn-outline-primary" type="button" id="backtohome">
           Back
         </button>
       </div>
     </div>
 
 
-    <div class="card" *ngIf="showPage && !isADriver">
-      <div class="card-header">
-        Regisiter Your Account
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="ownderaccount_name">
-            Username
-          </label>
-          <input type="text" id="ownderaccount_name" class="form-control"  [(ngModel)] = "newOwner.username" required minlength="5" maxlength="30" name="ownerusername" #ownerusername="ngModel">
-          <div *ngIf="ownerusername.errors && (ownerusername.dirty || ownerusername.touched)" class="alert alert-danger">
-              <div [hidden]="!ownerusername.errors.required">
-                  Username is required.
-              </div>
-              <div [hidden]="!ownerusername.errors.minlength">
-                Username must be at least 5 characters long.
-              </div>
-              <div [hidden]="!ownerusername.errors.maxlength">
-                Username cannot be more than 30 characters long.
-              </div>
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="owneraccount_email">
-            Email
-          </label>
-          <input type="email" id="owneraccount_email" class="form-control"  [(ngModel)] = "newOwner.email"  pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"  name="owneremail" required #owneremail="ngModel"/>
-          <div  *ngIf="owneremail.errors && (owneremail.dirty || owneremail.touched)"  class="alert alert-danger">
-              <div  [hidden]="!owneremail.errors.required">
-                  Email is required.
-              </div>
-              <div  [hidden]="!owneremail.errors.pattern">
-                  Email is invalid.
-              </div>
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="owneraccount_password">
-              Password
-            </label>
-            <input type="password" id="owneraccount_password" class="form-control" [(ngModel)] = "newOwner.password" required minlength="5" maxlength="30" name="ownerpassword" #ownerpassword="ngModel">
-            <div *ngIf="ownerpassword.errors && (ownerpassword.dirty || ownerpassword.touched)" class="alert alert-danger">
-                <div [hidden]="!ownerpassword.errors.required">
-                    Password is required.
-                </div>
-                <div [hidden]="!ownerpassword.errors.minlength">
-                  Password must be at least 5 characters long.
-                </div>
-                <div [hidden]="!ownerpassword.errors.maxlength">
-                  Password cannot be more than 30 characters long.
-                </div>
-              </div>
-          </div>
-          <div class="form-group">
-              <label for="owneraccount_zipcode" >
-                Zipcode
-              </label>
-              <input type="number" id="owneraccount_zipcode" class="form-control" [(ngModel)] = "newOwner.zipcode"  pattern="[0-9]{5}" name="ownerzipcode" required #ownerzipcode="ngModel"/>
-              <div  *ngIf="ownerzipcode.errors && (ownerzipcode.dirty || ownerzipcode.touched)"  class="alert alert-danger">
-                <div  [hidden]="!ownerzipcode.errors.required">
-                    Zipcode is required.
-                </div>
-                <div  [hidden]="!ownerzipcode.errors.pattern">
-                    Zipcode is invalid.
-                </div>
-            </div>
-            </div>
-            <div class="form-group">
-                <label for="owneraccount_phone">
-                  Phone Number
-                </label>
-                <input type="number" id="owneraccount_phone" class="form-control" [(ngModel)] = "newOwner.phone" pattern="[0-9]{10}" name="ownerphone" required #ownerphone="ngModel"/>
-                <div  *ngIf="ownerphone.errors && (ownerphone.dirty || ownerphone.touched)"  class="alert alert-danger">
-                  <div  [hidden]="!ownerphone.errors.required">
-                      Phone is required.
-                  </div>
-                  <div  [hidden]="!ownerphone.errors.pattern">
-                      Phone is invalid.
-                  </div>
-              </div>
-              </div>
-              <div class="form-group">
-                  <label for="owneraccount_name">
-                    Your Full Name
-                  </label>
-                  <input type="name" id="owneraccount_name" class="form-control" [(ngModel)] = "newOwner.name"name="ownername" required #ownername="ngModel"/>
-                  <div  *ngIf="ownername.errors && (ownername.dirty || ownername.touched)"  class="alert alert-danger">
-                    <div  [hidden]="!ownername.errors.required">
-                        Your name is required.
-                    </div>
-                </div>
-                </div>
-                <div class="form-group">
-                  <label for="owneraccount_workemail">
-                    Your working email
-                  </label>
-                  <input type="name" id="owneraccount_workemail" class="form-control" [(ngModel)] = "newOwner.workingEmail" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"  name="ownerworkemail" required #ownerworkemail="ngModel"/>
-                  <div  *ngIf="ownerworkemail.errors && (ownerworkemail.dirty || ownerworkemail.touched)"  class="alert alert-danger">
-                    <div  [hidden]="!ownerworkemail.errors.required">
-                        Working email is required.
-                    </div>
-                    <div  [hidden]="!ownerworkemail.errors.pattern">
-                      Working email is invalid.
-                  </div>
-                </div>
-                </div>
-                <div class="form-group">
-                  <label for="owneraccount_description">
-                    Your shop description
-                  </label>
-                  <input type="name" id="owneraccount_description" class="form-control" [(ngModel)] = "newOwner.description"  name="ownerdescription" required #ownerdescription="ngModel"/>
-                  <div  *ngIf="ownerworkemail.errors && (ownerworkemail.dirty || ownerworkemail.touched)"  class="alert alert-danger">
-                    <div  [hidden]="!ownerdescription.errors.required">
-                        Desciption is required.
-                    </div>
-                </div>
-                </div>
-                <div class="form-group">
-                  <label for="owneraccount_review">
-                    Your shop review (optional)
-                  </label>
-                  <input type="name" id="owneraccount_review" class="form-control" [(ngModel)] = "newReview"/>
-                </div>
-                <div class="form-group">
-                  <label for="owneraccount_deal">
-                    Your shop deal (optional)
-                  </label>
-                  <input type="name" id="owneraccount_deal" class="form-control" [(ngModel)] = "newDeal"/>
-                </div>
-                <div class="form-group">
-                </div>
-      </div>
-      <button routerLink="" class="btn btn-outline-primary" type="button" (click)="addOwnerCheck()" [disabled]="( ownerusername.errors||owneremail.errors
-      || ownerpassword.errors|| ownerzipcode.errors|| ownerphone.errors|| ownername.errors|| ownerworkemail.errors || ownerdescription.errors)">
-        Sign up
-      </button>
-      <button routerLink="" class="btn btn-outline-primary" type="button" id="backtohomeNow">
-        Back
-      </button>
-    </div>
-  </div>
 
-
-  </div>
-</div>
- -->
-
-<div class="col-md-4">
-  <pre>{{newAccount | json}}</pre>
-  <pre>{{newVehicle | json}}</pre>
-</div>

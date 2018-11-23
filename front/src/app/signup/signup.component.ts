@@ -22,12 +22,9 @@ export class SignupComponent implements OnInit {
 
   addACar:boolean;
 
-  showPage: boolean;
-  isADriver:boolean;
 
   constructor(public accountService:AccountService, public router: Router) {
-    this.showPage = false;
-    this.isADriver=false;
+    this.newAccount.account_type = -1;
   }
 
   ngOnInit() {
@@ -64,15 +61,14 @@ export class SignupComponent implements OnInit {
   }
 
   saveAccount() {
-//     if(this.addACar) {
-//       this.newDriver.vehicles = [];
-//       this.newDriver.vehicles.push(this.newCar);}
-//   //  this.savedDriver.push(this.newDriver);
+    this.accountService.getAllusers().subscribe((allusers:Account[]) => {
 
+      this.accountService.register(this.newAccount).subscribe(
+        
+      );
 
-//    this.accountService.defaultDriver.push(this.newDriver);
-//    this.newDriver = new Driver;
-//    this.newCar = new Vehicle;
+      this.router.navigate(['login']);
+    });
   }
 
 }
