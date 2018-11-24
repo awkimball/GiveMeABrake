@@ -8,12 +8,18 @@ import { TrustedStyleString } from '@angular/core/src/sanitization/bypass';
 })
 export class VisitshopComponent implements OnInit {
   
+
+  
+  
   review=[];
+  rates=[];
   comment: string; 
+  rating: number;
   gasprice=80; 
   address="test_address";
   email="test_email";
   description="test_description";
+
 
   shopname="test_shopname";
   shopdeal=["first_deal","second_deal","third_deal"];
@@ -25,7 +31,9 @@ export class VisitshopComponent implements OnInit {
   }
   addreview() {
     this.review.push(this.comment);
+    this.rates.push(this.rating);
     this.comment='';
+    this.rating=0;
   }
 
 }

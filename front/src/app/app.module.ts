@@ -16,7 +16,8 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { CheckdealComponent } from './checkdeal/checkdeal.component';
 import { DealsComponent } from './deals/deals.component';
 import { HttpClientModule } from '@angular/common/http';
-import { VisitshopComponent } from './visitshop/visitshop.component';
+import { VisitshopComponent } from './shop/visitshop/visitshop.component';
+import { RatingComponent } from './shop/rating/rating.component';
 
 
 
@@ -32,7 +33,8 @@ import { VisitshopComponent } from './visitshop/visitshop.component';
       SignupComponent,
       CheckdealComponent,
       DealsComponent,
-      VisitshopComponent
+      VisitshopComponent,
+      RatingComponent
    ],
    imports: [
       BrowserModule,

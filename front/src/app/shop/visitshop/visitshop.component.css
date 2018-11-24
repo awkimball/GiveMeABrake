@@ -10,3 +10,8 @@
     font-size: 50px;
     margin: 0 auto;
   }
+
+  .card-body{
+    width: 600px;
+    
+  }
