@@ -18,7 +18,7 @@ import { EmailValidator } from '@angular/forms';
 export class AccountService {
 
 
-    protected endPoint = "http://aws.akimball.com:8080";
+    protected endPoint = "http://aws.akimball.com:443";
 
     protected httpOptions = {
         headers: new HttpHeaders({
@@ -56,6 +56,12 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    updateUser(id: number, newUser:Account): Observable<Account> {
+        return this.httpClient
+        .put<Account>(`${this.endPoint}/user/${id}`, newUser,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     getShop(id: number): Observable<Shop[]> {
         return this.httpClient
         .get<Shop[]>(`${this.endPoint}/user/${id}/shops`, this.httpOptions)
@@ -90,6 +96,24 @@ export class AccountService {
     addVehicle(vehicle:Vehicle): Observable<Vehicle> {
         return this.httpClient
         .post<Vehicle>(`${this.endPoint}/add_vehicle`, Vehicle, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getNearBy(zip: number): Observable<Shop[]> {
+        return this.httpClient
+        .get<Shop[]>(`${this.endPoint}/nearby_shops/${zip}`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getAllShop(): Observable<Shop[]> {
+        return this.httpClient
+        .get<Shop[]>(`${this.endPoint}/shops`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getZips(zip:number): Observable<Zipcode[]> {
+        return this.httpClient
+        .get<Zipcode[]>(`${this.endPoint}/zip/${zip}`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 

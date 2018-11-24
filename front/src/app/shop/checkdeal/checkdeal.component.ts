@@ -1,6 +1,6 @@
-import { Shop } from '../domain/models/shop';
+import { Shop } from '../../domain/models/shop';
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from './../account.service';
+import { AccountService } from './../../account.service';
 
 @Component({
   selector: 'app-checkdeal',
