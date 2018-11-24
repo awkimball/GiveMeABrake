@@ -1,4 +1,4 @@
-import { Owner } from '../domain/models/owner';
+import { Shop } from '../domain/models/shop';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
 
@@ -9,7 +9,7 @@ import { AccountService } from './../account.service';
 })
 export class CheckdealComponent implements OnInit {
 
-  otherdeal: Owner[] = [];
+  otherdeal: Shop[] = [];
 
   constructor(public accountService:AccountService) {
     // for(const owner of this.accountService.defaultOwner) {
