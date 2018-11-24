@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { VisitshopComponent } from './visitshop/visitshop.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent},
     { path: 'checkdeal', component: CheckdealComponent},
     { path: 'deals', component: DealsComponent},
+    { path: 'visitshop', component:VisitshopComponent },
     { path: 'profile', data: {animation: 'profile'},
         children: [
             {path: '', component: ProfileComponent},

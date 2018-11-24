@@ -1,0 +1,12 @@
+.bodypart{
+    width: 1600px;
+    background-color : white;
+    margin: 0 auto;
+  }
+
+  .shop_name{
+    width: 600px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    margin: 0 auto;
+  }
