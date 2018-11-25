@@ -16,9 +16,11 @@ export class PricecheckComponent implements OnInit {
   shop:Shop;
 
   othershop:Shop[] = [];
-  distance: number[] = [];
+  distance: {userid,number}[] = [];
 
   result:{Shop,number}[]=[];
+
+  newGas:number =0;
 
   constructor(public accountService:AccountService, public router:Router, public mapcalculatorService:MapcalculatorService) {
 
@@ -40,7 +42,7 @@ export class PricecheckComponent implements OnInit {
                   }
                   var dis = this.mapcalculatorService.calculateDistance(z1,z2);
                   if(dis <1) {
-                    this.distance.push(dis);
+                    this.distance.push({userid:eachUser.iduser, number:dis});
                     this.accountService.getShop(eachUser.iduser).subscribe((nearShop:Shop[]) =>{
                       this.othershop.push(nearShop[0]);
                       this.combine();
@@ -61,10 +63,19 @@ export class PricecheckComponent implements OnInit {
   combine(){
 
     if(this.othershop.length==this.distance.length){
+      var newShop:Shop[]=[];
+      for(let i =0; i<this.distance.length;i++){
+        for(let j =0; j<this.distance.length;j++){
+          if(this.othershop[j].iduser == this.distance[i].userid){
+            newShop.push(this.othershop[j]);
+          }
+        }
+      }
+      this.othershop = newShop;
     
       for(let i =0; i<this.distance.length;i++){
         for(let j =0;j<this.distance.length-1;j++){
-          if(this.distance[j]>this.distance[j+1]){
+          if(this.distance[j].number>this.distance[j+1].number){
             let swap = this.distance[j];
             this.distance[j]= this.distance[j+1];
             this.distance[j+1]=swap;
@@ -76,9 +87,15 @@ export class PricecheckComponent implements OnInit {
         }
       }
       for(let i =0; i<this.distance.length;i++){
-        this.result.push({Shop: this.othershop[i], number: this.distance[i]});
+    
+        this.result.push({Shop: this.othershop[i], number: this.distance[i].number});
       }
     }
+  }
+
+  saveGas() {
+    this.shop.gas_price = this.newGas;
+    this.accountService.updateShop(+localStorage.getItem('uid'),this.shop).subscribe();
   }
 
 }

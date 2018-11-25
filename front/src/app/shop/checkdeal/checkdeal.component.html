@@ -1,11 +1,20 @@
-<body>
-  <ul *ngFor="let owner of otherdeal">
-    <p id="check">The {{owner.name}}'s shop has following deals:</p>
-    <li *ngFor="let ideal of owner.deals">
-      <p>{{ideal}}</p>
-    </li>
-  </ul>
-  <div id="buttondeal">
-  <button routerLink="/deals" class = "btn btn-info" id="mydeal" type="button">See my deals</button>
-  </div>
-</body>
+<div>
+    <div *ngFor="let i of result" >
+        <div class="card">
+            <div class="card-header">
+              {{i.Shop.shop_name}} shop
+              <p class="float-right"> {{i.number}} miles away</p>
+            </div>
+            <div class="card-body">
+                <p *ngIf="i.Deals.length==0">This shop does not have any deals currently</p>
+              <ul *ngFor="let eachDeal of i.Deals">
+                  
+                <li><div>
+                    <p>{{eachDeal.name}} : $ {{eachDeal.price}}</p>
+                    <p>{{eachDeal.description}}</p>
+                </div></li>
+              </ul>
+            </div>
+          </div>
+    </div>
+</div>

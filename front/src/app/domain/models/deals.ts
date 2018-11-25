@@ -1,7 +1,7 @@
 export class Deals {
 
-    idusers: number;
-    iddeal: number;
+  iddeal: number;
+    idshop: number;
     price: number;
     notify:boolean;
     name:string;

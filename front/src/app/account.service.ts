@@ -86,6 +86,12 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    updateShop(id: number, shop: Shop): Observable<Shop> {
+        return this.httpClient
+        .put<Shop>(`${this.endPoint}/user/${id}/shop`, shop, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
 
     addShop(shop:Shop): Observable<Shop> {
         return this.httpClient
@@ -102,6 +108,12 @@ export class AccountService {
     getNearBy(zip: number): Observable<Shop[]> {
         return this.httpClient
         .get<Shop[]>(`${this.endPoint}/nearby_shops/${zip}`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getDeal(id: number): Observable<Deals[]> {
+        return this.httpClient
+        .get<Deals[]>(`${this.endPoint}/user/${id}/deals`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
