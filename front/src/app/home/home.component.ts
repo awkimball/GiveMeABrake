@@ -18,11 +18,16 @@ export class HomeComponent implements OnInit {
   account: Account = new Account();
   isLogin: boolean;
 
+  newZip: number;
+  changeZip: boolean;
+
 
   
   cars: Vehicle;
+  shop: Shop;
 
   constructor(public accountService:AccountService) {
+    this.changeZip = false;
 
     if (localStorage.getItem('loggedIn') == 'true') {
         this.isLogin = true;
@@ -35,6 +40,8 @@ export class HomeComponent implements OnInit {
               this.accountService.getVehicle(this.account.iduser).subscribe((vehicle:Vehicle[]) => {
                 if (vehicle.length === 0) {
                   this.openModal.nativeElement.click();
+                } else {
+                  this.cars = vehicle[0];
                 }
               }
               );
@@ -43,6 +50,8 @@ export class HomeComponent implements OnInit {
               this.accountService.getShop(this.account.iduser).subscribe((shops:Shop[]) => {
                 if (shops.length === 0) {
                   this.openModal.nativeElement.click();
+                } else {
+                  this.shop = shops[0];
                 }
               }
               );
@@ -60,6 +69,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     
 
+  }
+
+  saveZip() {
+    this.account.zipcode = this.newZip;
+    this.accountService.updateUser(this.account.iduser,this.account).subscribe();
+    this.changeZip = false;
   }
 
 }

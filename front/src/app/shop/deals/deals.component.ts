@@ -1,7 +1,7 @@
-import { Shop } from '../domain/models/shop';
+
 import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
-import { AccountService } from './../account.service';
-import { $ } from 'protractor';
+import { AccountService } from './../../account.service';
+import { Deals } from 'src/app/domain/models/deals';
 
 @Component({
   selector: 'app-deals',
@@ -11,7 +11,9 @@ import { $ } from 'protractor';
 export class DealsComponent implements OnInit {
   @ViewChild('goback') goback:ElementRef;
 
-  newDeal = '';
+  newDeal:Deals;
+
+  myAllDeal: Deals[];
 
   constructor(public accountService:AccountService) {
   }
@@ -19,11 +21,5 @@ export class DealsComponent implements OnInit {
   ngOnInit() {
   }
 
-//   saveDeal() {
-//     this.accountService.setOwner.deals.push(this.newDeal);
-
-//     this.newDeal = '';
-//     this.goback.nativeElement.click();
-//   }
 
 }

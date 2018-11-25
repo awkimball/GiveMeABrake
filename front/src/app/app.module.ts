@@ -1,3 +1,4 @@
+import { PricecheckComponent } from './shop/pricecheck/pricecheck.component';
 import { MapcalculatorService } from './mapcalculator.service';
 import { SignupComponent } from './signup/signup.component';
 import { AccountService } from './account.service';
@@ -13,11 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { CheckdealComponent } from './checkdeal/checkdeal.component';
-import { DealsComponent } from './deals/deals.component';
+import { CheckdealComponent } from './shop/checkdeal/checkdeal.component';
+import { DealsComponent } from './shop/deals/deals.component';
 import { HttpClientModule } from '@angular/common/http';
-import { VisitshopComponent } from './shop/visitshop/visitshop.component';
-import { RatingComponent } from './shop/rating/rating.component';
 
 
 
@@ -33,8 +32,7 @@ import { RatingComponent } from './shop/rating/rating.component';
       SignupComponent,
       CheckdealComponent,
       DealsComponent,
-      VisitshopComponent,
-      RatingComponent
+      PricecheckComponent
    ],
    imports: [
       BrowserModule,

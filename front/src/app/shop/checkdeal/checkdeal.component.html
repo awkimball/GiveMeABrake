@@ -1,0 +1,32 @@
+
+
+          <div class = "card">
+
+
+                   <p class="alert alert-danger text-centre" role="alert" style="font-family: Palatino Linotype, Book Antiqua, Palatino, serif;font-size: 50px;"> Here you can check your nearby competitors' deals </p>
+
+              <div class = "card-body">
+                <div>
+                    <div *ngFor="let i of result" >
+                        <div class="card">
+                            <div class="card-header">
+                              <span style="font-family: Courier New, Courier, monospace;font-size: 15px;">Shop Name: </span>
+                              <span style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 20px;">{{i.Shop.shop_name}}</span>
+                              <p class="float-right"> {{i.number}} miles away</p>
+                            </div>
+                            <div class="card-body">
+                                <p *ngIf="i.Deals.length==0">This shop does not have any deals currently</p>
+                                <p></p>
+                              <ul *ngFor="let eachDeal of i.Deals">
+                                  
+                                  <div class="card-title"></div>
+                                    <p >{{eachDeal.name}} : $ {{eachDeal.price}}</p>
+                                    <p>{{eachDeal.description}}</p>
+                                    <p></p>
+                              </ul>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+              </div>
+

@@ -1,0 +1,48 @@
+<div class="alert alert-light" role="alert"> 
+    <div class="row">
+        <div class="col">
+  
+</div>
+<div class="col">
+  <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#changeGas" >Chane Gas Price</button>
+  </div>
+
+    </div>
+  <div id="changeGas" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+              <input class="text-center" type="number" id="changeZipcode" [(ngModel)] = "newGas" />
+            <button type="button" class="btn btn-default float-right" data-dismiss="modal"id="saveGas" (click)="saveGas()" [disabled] = "newGas==0">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+        <div class="alert alert-danger" role="alert">
+            <h1 class="text-center" style="text-decoration: underline;">Your current gas price is <strong style="  color:black">$ {{shop.gas_price}}</strong></h1>
+        </div>
+          
+        <div class="alert alert-secondary" role="alert">
+            <h4 class="alert-link" style="color:black">Here's the 3 nearest shop:</h4>
+        </div>
+
+        <div *ngFor="let i of result" >
+            <div class="card">
+                <h4 class="card-header" style="color:darkgreen">
+                  Shop name： {{i.Shop.shop_name}} 
+                </h4>
+                <div class="card-body" style="color:darkblue">
+                  <h2>Gas price: $ {{i.Shop.gas_price}} </h2>
+                  <p class="float-right"> {{i.number}} miles away</p>
+                </div>
+              </div>
+              <p></p>
+        </div>
+      </div>
+
+
+</div>
+

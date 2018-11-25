@@ -1,7 +1,7 @@
 
 export class Shop {
   
-    idusers:number;
+    iduser:number;
     idshop:number;
     gas_price:number;
     address:string;

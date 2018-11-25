@@ -56,6 +56,12 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    updateUser(id: number, newUser:Account): Observable<Account> {
+        return this.httpClient
+        .put<Account>(`${this.endPoint}/user/${id}`, newUser,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     getShop(id: number): Observable<Shop[]> {
         return this.httpClient
         .get<Shop[]>(`${this.endPoint}/user/${id}/shops`, this.httpOptions)
@@ -80,6 +86,12 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    updateShop(id: number, shop: Shop): Observable<Shop> {
+        return this.httpClient
+        .put<Shop>(`${this.endPoint}/user/${id}/shop`, shop, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
 
     addShop(shop:Shop): Observable<Shop> {
         return this.httpClient
@@ -93,15 +105,27 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
-    getreview(id:number,idshop:number): Observable<Review> {
+    getNearBy(zip: number): Observable<Shop[]> {
         return this.httpClient
-        .get<Review>(`${this.endPoint}/user/${id}/shops/${idshop}/reviews`,this.httpOptions)
+        .get<Shop[]>(`${this.endPoint}/nearby_shops/${zip}`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
-    addreview(review:Review): Observable<Review> {
+    getDeal(id: number): Observable<Deals[]> {
         return this.httpClient
-        .post<Review>(`${this.endPoint}/add_review`, review, this.httpOptions)
+        .get<Deals[]>(`${this.endPoint}/user/${id}/deals`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getAllShop(): Observable<Shop[]> {
+        return this.httpClient
+        .get<Shop[]>(`${this.endPoint}/shops`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getZips(): Observable<Zipcode[]> {
+        return this.httpClient
+        .get<Zipcode[]>(`${this.endPoint}/zip`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
