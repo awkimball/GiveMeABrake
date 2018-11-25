@@ -111,9 +111,9 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
-    getZips(zip:number): Observable<Zipcode[]> {
+    getZips(): Observable<Zipcode[]> {
         return this.httpClient
-        .get<Zipcode[]>(`${this.endPoint}/zip/${zip}`, this.httpOptions)
+        .get<Zipcode[]>(`${this.endPoint}/zip`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 

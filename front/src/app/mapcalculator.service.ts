@@ -10,14 +10,13 @@ export class MapcalculatorService {
   firstZip:Zipcode
   secondZip:Zipcode;
 
-
 constructor(public accountService:AccountService) {
  }
 
 
   calculateDistance(first:Zipcode, second:Zipcode) {
     this.firstZip = first;
-    this.secondZip = second;
+    this.secondZip = second;    
 
     return this.calculatezip();
   }
@@ -34,5 +33,6 @@ constructor(public accountService:AccountService) {
                               // tslint:disable-next-line:max-line-length
                               ( Math.sin(this.firstZip.latitude)*Math.sin(this.secondZip.latitude) + Math.cos(this.firstZip.latitude)*Math.cos(this.secondZip.latitude)*Math.cos(Math.abs(this.firstZip.longitude-this.secondZip.longitude))   )  ) );
                               return result1;
+                              
                             }
 }
