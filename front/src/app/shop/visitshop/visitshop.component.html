@@ -1,3 +1,4 @@
+
 <div class="bodypart">
   <div class="alert alert-primary" role="alert" >
         <button type="button" class="btn btn-danger">Add To Favourtie</button>
@@ -40,19 +41,19 @@
           Here's the review
       </h1>
 
-      <div class="hiddenpart" *ngIf="review.length ===0" >
+      <div class="hiddenpart" *ngIf="reviewlist.length ===0" >
           <h4 class="col-md-8">Be the first to add a review</h4>
       </div>
       
       <div class="card-body "> 
 
-        <div *ngFor='let num of rates' class="card">
+        <div *ngFor='let customer of reviewlist' class="card">
 
                 <div class="card-title">
-                    Rating: <app-rating *ngIf="num" [ratingValue]="num"></app-rating>
+                    Rating: <app-rating *ngIf="samplereview" [ratingValue]="customer.rating"></app-rating>
                 </div>
 
-                <div class="card-body"> {{review}} </div>
+                <div class="card-body"> {{customer.comment}} </div>
         </div>
 
     </div>
@@ -68,17 +69,17 @@
 
 
             <div class="form-group col-md-4">
-                    <select class="custom-select"   [(ngModel)]="rating" id="inputGroupSelect01" name=rate>
+                    <select class="custom-select"   [(ngModel)]="samplereview.rating" id="inputGroupSelect01" name=rate>
                         <option *ngFor="let rate of [1,2,3,4,5]" value = {{rate}}>{{rate}} stars</option>
                     </select>
                     <div class = "col-sm-6">
-                        <app-rating *ngIf="rating" [ratingValue]="rating"></app-rating>
+                        <app-rating *ngIf="samplereview" [ratingValue]="samplereview.rating"></app-rating>
                     </div>
                 </div>
 
         <div class="col-md-6">
-            <textarea type="text" [(ngModel)]="comment"  rows="10" cols="220"></textarea>
-            <button type="button" class="btn btn-primary" (click)="addreview()" [disabled]="!review || !rating" >Submit</button>
+            <textarea type="text" [(ngModel)]="samplereview.comment"  rows="10" cols="220"></textarea>
+            <button type="button" class="btn btn-primary" (click)="addreview()" [disabled]="!samplereview.comment || !samplereview.rating" >Submit</button>
         </div>  
 
 

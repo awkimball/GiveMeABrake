@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TrustedStyleString } from '@angular/core/src/sanitization/bypass';
+import { ActivatedRoute } from '@angular/router';
+import { Review } from '../../domain/models/review';
+import { Shop } from '../../domain/models/shop';
+import { AccountService } from '../../account.service';
+
 
 @Component({
   selector: 'app-visitshop',
@@ -7,15 +12,17 @@ import { TrustedStyleString } from '@angular/core/src/sanitization/bypass';
   styleUrls: ['./visitshop.component.css']
 })
 export class VisitshopComponent implements OnInit {
+  shop:Shop[] =[];
+  reviewlist: Review[] =[];
+  samplereview: Review={};
+
+  shopid=1;
+  
   
 
-  
-  
-  review=[];
-  rates=[];
   comment: string; 
-  rating: number;
-  gasprice=80; 
+
+  gasprice=80;
   address="test_address";
   email="test_email";
   description="test_description";
@@ -25,15 +32,21 @@ export class VisitshopComponent implements OnInit {
   shopdeal=["first_deal","second_deal","third_deal"];
 
 
-  constructor() { }
+  constructor(public accountService:AccountService) { 
+
+  }
 
   ngOnInit() {
+    this.accountService.getShop(1).subscribe((newshop) => {this.shop = newshop;
+    });
   }
   addreview() {
-    this.review.push(this.comment);
-    this.rates.push(this.rating);
-    this.comment='';
-    this.rating=0;
+    this.samplereview.shop_name=this.shopname;
+    this.samplereview.idusers=1;
+    this.reviewlist.push(this.samplereview);
+    
+    this.samplereview={};
+
   }
 
 }
