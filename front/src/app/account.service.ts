@@ -93,6 +93,18 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    getreview(id:number,idshop:number): Observable<Review> {
+        return this.httpClient
+        .get<Review>(`${this.endPoint}/user/${id}/shops/${idshop}/reviews`,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    addreview(review:Review): Observable<Review> {
+        return this.httpClient
+        .post<Review>(`${this.endPoint}/add_review`, review, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     protected handleException(exception: any) {
         var message = `${exception.status} : ${exception.statusText}\r\n${exception.message}`;
         alert(message);

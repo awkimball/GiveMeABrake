@@ -15,8 +15,10 @@ export class VisitshopComponent implements OnInit {
   shop:Shop[] =[];
   reviewlist: Review[] =[];
   samplereview: Review={};
+  testreview: Review;
 
   shopid=1;
+  userid=1;
   
   
 
@@ -38,13 +40,15 @@ export class VisitshopComponent implements OnInit {
 
   ngOnInit() {
     this.accountService.getShop(1).subscribe((newshop) => {this.shop = newshop;
+      this.accountService.getreview(this.userid,this.shopid).subscribe(newreview) => (this.testreview=newreview)
     });
   }
   addreview() {
     this.samplereview.shop_name=this.shopname;
     this.samplereview.idusers=1;
     this.reviewlist.push(this.samplereview);
-    
+    this.accountService.addreview(this.samplereview).subscribe(rev => {});
+
     this.samplereview={};
 
   }
