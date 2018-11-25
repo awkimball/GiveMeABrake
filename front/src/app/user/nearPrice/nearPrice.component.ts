@@ -1,62 +1,47 @@
 import { Zipcode } from './../../domain/models/zipcode';
 import { Account } from './../../domain/models/account';
-import { Deals } from 'src/app/domain/models/deals';
-import { Shop } from '../../domain/models/shop';
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from './../../account.service';
+import { MapcalculatorService } from './../../mapcalculator.service';
 import { Router } from '@angular/router';
-import { MapcalculatorService } from 'src/app/mapcalculator.service';
+import { AccountService } from './../../account.service';
+import { Component, OnInit } from '@angular/core';
+import { Shop } from 'src/app/domain/models/shop';
 
 @Component({
-  selector: 'app-checkdeal',
-  templateUrl: './checkdeal.component.html',
-  styleUrls: ['./checkdeal.component.css']
+  selector: 'app-nearPrice',
+  templateUrl: './nearPrice.component.html',
+  styleUrls: ['./nearPrice.component.css']
 })
-export class CheckdealComponent implements OnInit {
-
-  shop:Shop;
-
+export class NearPriceComponent implements OnInit {
   othershop:Shop[] = [];
-  distance: {userid, number}[] = [];
-  alldeals:Deals[][]=[];
+  distance: {userid,number}[] = [];
 
-  noDeals:boolean[] =[];
-
-  result:{Shop,Deals,number,IsEmpty}[]=[];
-
-  newGas:number =0;
+  result:{Shop,number}[]=[];
 
   constructor(public accountService:AccountService, public router:Router, public mapcalculatorService:MapcalculatorService) {
-
-    this.accountService.getShop(+localStorage.getItem('uid')).subscribe((shop) => {
-
-      this.shop=shop[0];
+    this.othershop = [];
+    this.distance = [];
+    this.result=[];
       this.accountService.getZips().subscribe((allZip:Zipcode[]) => {
         this.accountService.getAllusers().subscribe((users:Account[]) => {
           for (var eachUser of users) {
-            if(eachUser.iduser != this.shop.iduser && eachUser.account_type == 1) {
+            if( eachUser.account_type == 1) {
                   var z1,z2:Zipcode;
                   for(let z of allZip){
                     if(eachUser.zipcode == z.zipcode){
                       z1 = z;
                     }
+                    
                     if(+localStorage.getItem('zip') == z.zipcode){
+                      
                       z2 =z;
                     }
                   }
                   var dis = this.mapcalculatorService.calculateDistance(z1,z2);
-
                   if(dis <1) {
                     this.distance.push({userid:eachUser.iduser, number:dis});
                     this.accountService.getShop(eachUser.iduser).subscribe((nearShop:Shop[]) =>{
                       this.othershop.push(nearShop[0]);
-                      this.accountService.getDeal(nearShop[0].idshop).subscribe((shopDeals:Deals[]) =>{
-                      this.alldeals.push(shopDeals);
-
-                        if(this.alldeals.length == this.othershop.length ){
-                          this.combine();
-                        }
-                      });
+                      this.combine();
                     });
                   }
               
@@ -64,7 +49,6 @@ export class CheckdealComponent implements OnInit {
           }
         });
       });
-    });
 
   }
 
@@ -82,29 +66,8 @@ export class CheckdealComponent implements OnInit {
           }
         }
       }
+      
       this.othershop = newShop;
-
-      var newDeal:Deals[][] =[];
-      var isEmp:boolean;
-      for(let i =0; i<this.distance.length;i++){
-        isEmp = true;
-        for(let j =0; j<this.distance.length;j++){
-          if(this.alldeals[j].length>=1){
-            if(this.alldeals[j][0].idshop==this.othershop[i].idshop){
-              newDeal.push(this.alldeals[j]);
-              isEmp =false;
-            }
-          }
-          
-        }
-        
-        if(isEmp){
-          var emp:Deals[] =[];
-          newDeal.push(emp);
-        }
-        console.log(newDeal)
-      }
-      this.alldeals = newDeal;
     
       for(let i =0; i<this.distance.length;i++){
         for(let j =0;j<this.distance.length-1;j++){
@@ -116,16 +79,12 @@ export class CheckdealComponent implements OnInit {
             let swap2 = this.othershop[j];
             this.othershop[j]= this.othershop[j+1];
             this.othershop[j+1]=swap2;
-
-            let swap3 = this.alldeals[j];
-            this.alldeals[j]= this.alldeals[j+1];
-            this.alldeals[j+1]=swap3;
           }
         }
       }
       for(let i =0; i<this.distance.length;i++){
     
-        this.result.push({Shop: this.othershop[i], number: this.distance[i].number,Deals: this.alldeals[i],IsEmpty:this.noDeals[i]});
+        this.result.push({Shop: this.othershop[i], number: this.distance[i].number});
       }
     }
   }

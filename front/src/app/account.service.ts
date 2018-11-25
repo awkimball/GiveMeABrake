@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { EmailValidator } from '@angular/forms';
+import { Favorites } from './domain/models/favorites';
 
 
 @Injectable({
@@ -128,6 +129,24 @@ export class AccountService {
         .get<Zipcode[]>(`${this.endPoint}/zip`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
+
+    addDeals(deal:Deals): Observable<Deals> {
+        return this.httpClient
+        .post<Deals>(`${this.endPoint}/add_deal`, deal,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    getReview(id1:number,id2:number): Observable<Review[]> {
+        return this.httpClient
+        .get<Review[]>(`${this.endPoint}/user/${id1}/shops/${id2}/reviews`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+    
+    updateReview(review:Review): Observable<Review> {
+        return this.httpClient
+        .post<Review>(`${this.endPoint}/add_review`, review,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    } 
 
     protected handleException(exception: any) {
         var message = `${exception.status} : ${exception.statusText}\r\n${exception.message}`;

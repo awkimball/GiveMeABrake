@@ -98,4 +98,9 @@ export class PricecheckComponent implements OnInit {
     this.accountService.updateShop(+localStorage.getItem('uid'),this.shop).subscribe();
   }
 
+  visit(idshop:number) {
+    localStorage.setItem('visit',`${idshop}`);
+    this.router.navigate(['visitshop']);
+  }
+
 }

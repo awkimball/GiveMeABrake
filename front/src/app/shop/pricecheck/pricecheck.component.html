@@ -1,13 +1,6 @@
-<div class="alert alert-light" role="alert"> 
-    <div class="row">
-        <div class="col">
-  
-</div>
-<div class="col">
-  <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#changeGas" >Chane Gas Price</button>
-  </div>
 
-    </div>
+
+
   <div id="changeGas" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -21,28 +14,34 @@
 
 
     <div class="card">
+
         <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#changeGas"  style="text-align: center;display: inline-block;font-size: 90%;font-family: Arial, Helvetica, sans-serif;">Change Gas Price</button>
             <h1 class="text-center" style="text-decoration: underline;">Your current gas price is <strong style="  color:black">$ {{shop.gas_price}}</strong></h1>
+            
         </div>
           
-        <div class="alert alert-secondary" role="alert">
-            <h4 class="alert-link" style="color:black">Here's the 3 nearest shop:</h4>
+        <div class="alert alert-secondary" role="alert"  style="width: 80%;margin: 0 auto;">
+            <h4  style="color:black;font-size:120%;">Here's the 3 nearest shop:</h4>
         </div>
 
-        <div *ngFor="let i of result" >
-            <div class="card">
-                <h4 class="card-header" style="color:darkgreen">
-                  Shop name： {{i.Shop.shop_name}} 
-                </h4>
-                <div class="card-body" style="color:darkblue">
-                  <h2>Gas price: $ {{i.Shop.gas_price}} </h2>
-                  <p class="float-right"> {{i.number}} miles away</p>
-                </div>
-              </div>
-              <p></p>
-        </div>
-      </div>
+  
+    <div *ngFor="let i of result" >
+        <div class="card">
+            <h4 class="card-header" >
+              <span style="color:darkgreen;font-size: 70%;font-family: Courier New, Courier, monospace;" >Shop Name:  </span>
+                <a  class="badge badge-light" style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 120%;" (click)= "visit(i.Shop.iduser)"> {{i.Shop.shop_name}}</a>
+            </h4>
 
+            <div class="card-body" style="color:black;">
+              <span style="color:darkgreen;font-size: 100%;font-family: Arial, Helvetica, sans-serif;" >Gas price:  </span>
+              <span style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 120%;">$ {{i.Shop.gas_price}} </span>
+              <p class="float-right"> {{i.number}} miles away</p>
 
-</div>
+            </div>
+          </div>
+          <p></p>
+    </div>
+  </div>
+
 

@@ -7,5 +7,4 @@ export class Account {
     zipcode:number;
     phone:number;
     account_type:number;
-
 }

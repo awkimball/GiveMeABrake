@@ -1,31 +1,93 @@
 <body>
-    <ul>
-      <p id="check">Now you have following deals:</p>
-      <li *ngFor="let ideal of this.accountService.setOwner.deals">
-        <p>{{ideal}}</p>
-      </li>
-    </ul>
+    <div class="alert alert-primary text-center" role="alert" style="font-size: 300%;text-decoration: underline;  margin: 0 auto;width:80%;">
+        <span class="text-center "style="margin: 0 auto;font-family: Palatino Linotype, Book Antiqua, Palatino, serif;">Modify your deals !</span>
+        
+    </div>
+  <div class="card">
+
+
+  
+      <div class="card-header" style="font-size: 200%;  margin: float-right ;">Now you have following deals:</div>
+
+      <div class="card-body">
+      
+      <table class="table">
+        <thead >
+            <th  class="alert alert-primary text-center" role="alert"  style="font-size: 150%;font-family:Arial Black, Gadget, sans-serif" scope="col">Name</th>
+            <th  class="alert alert-secondary text-center" role="alert" style="font-size: 150%;font-family:Arial Black, Gadget, sans-serif" scope="col">Price</th>
+            <th  class="alert alert-success text-center" role="alert" style="font-size: 150%;font-family:Arial Black, Gadget, sans-serif" scope="col">Desciption</th>
+            <th class="alert alert-warning text-center" role="alert" style="font-size: 150%;font-family:Arial Black, Gadget, sans-serif" scope="col">Notify</th>
+        </thead>
+      <tbody *ngFor="let ideal of myAllDeal">
+        <tr>
+            <td class="text-center" style="font-size:120%;font-family:Palatino Linotype, Book Antiqua, Palatino, serif">{{ideal.name}}</td>
+            <td class="text-center" style="font-size:120%;font-family:Palatino Linotype, Book Antiqua, Palatino, serif">{{ideal.price}}</td>
+            <td class="text-center" style="font-size:120%;font-family:Palatino Linotype, Book Antiqua, Palatino, serif">{{ideal.description}}</td>
+            <td class="text-center" style="font-size:120%;font-family:Palatino Linotype, Book Antiqua, Palatino, serif" *ngIf="ideal.notify">Notifying</td>
+        </tr>
+      </tbody>
+    </table>
     <div id="buttondeal">
-    <button  class="btn btn-info btn-lg" data-toggle="modal" data-target="#bootstrapModel" id="adddeal" type="button" #openModal>Add new deals</button>
+    <button  class="btn btn-info btn-lg" data-toggle="modal" data-target="#bootstrapModel" id="adddeal" type="button" #openModal style="font-family:Comic Sans MS, cursive, sans-serif">Add New Deals</button>
     <div id="bootstrapModel" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="checktitle">Adding new deals</h4>
+              <h4 class="modal-title" id="checktitle">Adding New Deals</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="account_deal">
+                    <label  for="account_dealname" style="weidth:80" style="font-family:Arial Black, Gadget, sans-serif">
+                      Item name
                     </label>
-                    <input type="text" id="account_deal" class="form-control"  [(ngModel)] = "newDeal"  name="newDeals" required #newDeals="ngModel"/>
+                    <input type="text" id="account_dealname" style="width=10%;" class="form-control"  [(ngModel)] = "newDeal.name"  name="newDealname" required #newDealname="ngModel"/>
+                    <div  *ngIf="newDealname.errors && (newDealname.dirty || newDealname.touched)"  class="alert alert-danger">
+                        <div  [hidden]="!newDealname.errors.required">
+                            Name can't be empty
+                        </div>
+                    </div>
                   </div>
-              </div>
+              
+              <div class="form-group">
+                  <label for="account_dealprice" style="font-family:Arial Black, Gadget, sans-serif">
+                    Price
+                  </label>
+                  <input type="number" id="account_dealprice" class="form-control"  [(ngModel)] = "newDeal.price"  name="newDealprice" required #newDealprice="ngModel"/>
+                  <div  *ngIf="newDealprice.errors && (newDealprice.dirty || newDealprice.touched)"  class="alert alert-danger">
+                      <div  [hidden]="!newDealprice.errors.required">
+                          Price can't be empty
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="account_dealdes" style="font-family:Arial Black, Gadget, sans-serif">
+                      Desciption
+                    </label>
+                    <input type="text" id="account_dealdes" class="form-control"  [(ngModel)] = "newDeal.description"  name="newDealdes" required #newDealdes="ngModel"/>
+                    <div  *ngIf="newDealdes.errors && (newDealdes.dirty || newDealdes.touched)"  class="alert alert-danger">
+                        <div  [hidden]="!newDealdes.errors.required">
+                            Desciption can't be empty
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="account_dealnotify">
+                      </label> 
+
+                      <p style="font-family:Arial Black, Gadget, sans-serif; height:20%">Notify</p>
+                      <span style="font-family:Arial Black, Gadget, sans-serif; font-size:200%" >↓</span>
+                      <input class="notify_button" type="radio" aria-label="Radio button for following text input" id="account_dealnotify" class="form-control" value=true [(ngModel)] = "isNotify" /> 
+                    </div>
+            </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="saveDeal" (click)="saveDeal()" [disabled]="newDeals.errors">Add your deal</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal"id="back"  #goback>Back</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="saveDeal" (click)="saveDeal()" [disabled]="newDealname.errors|| newDealprice.errors|| newDealdes.errors">Add your deal</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal"id="back" (click)="deleteNew()" #goback>Back</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  </div>
   </body>
+

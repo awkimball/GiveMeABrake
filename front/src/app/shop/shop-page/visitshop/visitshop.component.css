@@ -1,0 +1,17 @@
+.bodypart{
+    width: 80%;
+    background-color : white;
+    margin: 0 auto;
+  }
+
+  .shop_name{
+    width: 100%;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    margin: 0 auto;
+  }
+
+  .card-body{
+    width: 1200px;
+    
+  }

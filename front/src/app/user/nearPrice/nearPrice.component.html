@@ -1,0 +1,32 @@
+
+  <div class="card">
+
+      <div class="alert alert-danger" role="alert">
+          <h1 class="text-center" style="margin: 0 auto;font-family: Palatino Linotype, Book Antiqua, Palatino, serif;text-decoration:underline;">You can check nearby gas price here</h1>
+          
+      </div>
+        
+      <div class="alert alert-secondary" role="alert"  style="width: 80%;margin: 0 auto;">
+          <h4  style="color:black;font-size:120%;">Here's 4 recommended shop:</h4>
+      </div>
+
+
+  <div *ngFor="let i of result" >
+      <div class="card">
+          <h4 class="card-header" >
+            <span style="color:darkgreen;font-size: 70%;font-family: Courier New, Courier, monospace;" >Shop Name:  </span>
+              <a  class="badge badge-light" style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 120%;" (click)= "visit(i.Shop.iduser)"> {{i.Shop.shop_name}}</a>
+          </h4>
+
+          <div class="card-body" style="color:black;">
+            <span style="color:darkgreen;font-size: 100%;font-family: Arial, Helvetica, sans-serif;" >Gas price:  </span>
+            <span style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 120%;">$ {{i.Shop.gas_price}} </span>
+            <p class="float-right"> {{i.number}} miles away</p>
+
+          </div>
+        </div>
+        <p></p>
+  </div>
+</div>
+
+
