@@ -1,0 +1,13 @@
+<div>
+    <div *ngFor="let i of result" >
+        <div class="card">
+            <div class="card-header">
+              <a  (click)= "visit(i.Shop.iduser)">{{i.Shop.shop_name}} shop</a>
+            </div>
+            <div class="card-body">
+              <p>Gas price: $ {{i.Shop.gas_price}} </p>
+              <p class="float-right"> {{i.number}} miles away</p>
+            </div>
+          </div>
+    </div>
+</div>

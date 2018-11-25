@@ -33,10 +33,10 @@
                 <div class = "card-body">
                     <h5 class="card-title">Welcome {{account.username}}!</h5>
                     <p class="card-text">Your current location is {{account.zipcode}}  
-                        <a href="#" class="btn btn-outline-secondary btn-sm" (click)="changeZip = true">Change location</a></p>
-                    <div *ngIf="changeZip==true">
+                        <a  class="btn btn-outline-secondary btn-sm" (click)="changeZip=true">Change location</a></p>
+                    <div [hidden]="changeZip!=true">
                         <input type="number" id="changeZipcode" [(ngModel)] = "newZip" />
-                        <a href="#" class="btn btn-secondary btn-sm" (click)="saveZip()">Save location</a>
+                        <a  class="btn btn-secondary btn-sm" (click)="saveZip()">Save location</a>
                     </div>
                     <div class="alert alert-info alert-dismissable fade show" role="alert">You haven't refueled your {{cars?.model}} since
                         <strong> {{cars?.oil_change_miles}} miles </strong>ago
@@ -48,9 +48,9 @@
             </div>
 
             <div id="userfeatures">
-                <a href="#" class="col-md-4 allfeature" ><div>Check oil change</div></a>
-                <a href="#" class="col-md-4 allfeature"><div>Check </div></a>
-                <a href="#" class="col-md-4 allfeature"><div>Save location</div></a>
+                <a  class="col-md-4 allfeature" routerLink="/nearPrice"><div>See nearby gas price</div></a>
+                <a  class="col-md-4 allfeature"><div>Check </div></a>
+                <a  class="col-md-4 allfeature"><div>Save location</div></a>
             </div>
       </div>
 
@@ -66,14 +66,10 @@
                 </div>
 
                 <div id="shopfeatures">
-                        <a href="#" class="col-md-4 allfeature" routerLink="/price"><div>Check near gas price</div></a>
-                        <a href="#" class="col-md-4 allfeature" routerLink="/checkdeal"><div>Check near shops' deals</div></a>
-                        <a href="#" class="col-md-4 allfeature"><div>Upload my new deals</div></a>
+                        <a  class="col-md-4 allfeature" routerLink="/price"><div>Check near gas price</div></a>
+                        <a  class="col-md-4 allfeature" routerLink="/checkdeal"><div>Check near shops' deals</div></a>
+                        <a  class="col-md-4 allfeature" routerLink="/deals"><div>Upload my new deals</div></a>
                     </div>
       </div>
     </div>
-</div>
-
-<div>
-    <pre>{{account | json}}</pre>
 </div>

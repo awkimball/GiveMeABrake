@@ -75,6 +75,8 @@ export class HomeComponent implements OnInit {
     this.account.zipcode = this.newZip;
     this.accountService.updateUser(this.account.iduser,this.account).subscribe();
     this.changeZip = false;
+    localStorage.setItem('zip',`${this.newZip}`);
   }
+
 
 }
