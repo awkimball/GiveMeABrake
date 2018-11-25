@@ -3,7 +3,7 @@
     <div *ngFor="let i of result" >
         <div class="card">
             <div class="card-header">
-              {{i.Shop.shop_name}} shop
+                <a  (click)= "visit(i.Shop.iduser)">{{i.Shop.shop_name}} shop</a>
               <p class="float-right"> {{i.number}} miles away</p>
             </div>
             <div class="card-body">

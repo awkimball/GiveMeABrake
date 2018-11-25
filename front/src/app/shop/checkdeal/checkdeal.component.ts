@@ -130,4 +130,9 @@ export class CheckdealComponent implements OnInit {
     }
   }
 
+  visit(idshop:number) {
+    localStorage.setItem('visit',`${idshop}`);
+    this.router.navigate(['visitshop']);
+  }
+
 }
