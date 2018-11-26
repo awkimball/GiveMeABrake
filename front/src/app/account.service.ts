@@ -75,6 +75,12 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
+    updateVehicle(id: number, id2:number,ve:Vehicle): Observable<Vehicle> {
+        return this.httpClient
+        .put<Vehicle>(`${this.endPoint}/user/${id}/vehicle/${id2}`,ve, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     register(account: Account): Observable<Account> {
         return this.httpClient
         .post<Account>(`${this.endPoint}/register`, account, this.httpOptions)
@@ -102,7 +108,7 @@ export class AccountService {
 
     addVehicle(vehicle:Vehicle): Observable<Vehicle> {
         return this.httpClient
-        .post<Vehicle>(`${this.endPoint}/add_vehicle`, Vehicle, this.httpOptions)
+        .post<Vehicle>(`${this.endPoint}/add_vehicle`, vehicle, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
 
