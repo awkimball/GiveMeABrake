@@ -136,9 +136,9 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     }
 
-    getReview(id1:number,id2:number): Observable<Review[]> {
+    getReview(id1:number): Observable<Review[]> {
         return this.httpClient
-        .get<Review[]>(`${this.endPoint}/user/${id1}/shops/${id2}/reviews`, this.httpOptions)
+        .get<Review[]>(`${this.endPoint}/shops/${id1}/reviews`, this.httpOptions)
         .pipe(catchError(this.handleException));
     }
     

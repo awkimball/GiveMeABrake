@@ -45,7 +45,7 @@
 
 
 
-  <!-- <div class="card">
+  <div class="card">
       <h1 class="card-title">
           Here's the review
       </h1>
@@ -87,11 +87,15 @@
                 </div>
 
         <div class="col-md-6">
-            <textarea type="text" [(ngModel)]="newReview.comment"  rows="10" cols="220"></textarea>
+            <textarea  rows="10" cols="220" [(ngModel)]="newReview.comment" id="reviews" name=comment></textarea>
             <button type="button" class="btn btn-primary" (click)="addreview()" [disabled]="!newReview.comment || !newReview.rating" >Submit</button>
         </div>  
 
 
     
     </div>
-</div> -->
+</div>
+
+<div>
+    <pre>{{newReview | json}}</pre>
+</div>

@@ -1,7 +1,8 @@
 export class Review {
 
-    idusers: number;
-    shop_name: string;
+    iduser: number;
+    idshop:number;
+    idreview:number;
     comment: string;
     rating:number;
   

@@ -35,10 +35,10 @@ export class DealsComponent implements OnInit {
 
   saveDeal(){
     if(this.isNotify=="true"){
-      this.newDeal.notify = true;
+      this.newDeal.notify = 1;
     }
     else{
-      this.newDeal.notify = false;
+      this.newDeal.notify = 0;
     }
     this.newDeal.idshop = this.shop.idshop;
 
