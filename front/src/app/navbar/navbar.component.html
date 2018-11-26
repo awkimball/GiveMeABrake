@@ -13,7 +13,6 @@
         </div>
     
       <button *ngIf='accountService.getStatus()' (click)='logout()' [routerLink]="[ 'login' ]" class = "btn btn-dark float-right" id="logout">Log Out</button>
-      <button *ngIf='!accountService.getStatus()' [routerLink]="[ 'login' ]" class = "btn btn-primary float-right" id="loginbutton">Log In</button>
       <button *ngIf='!accountService.getStatus()' [routerLink]="[ 'signup' ]" class = "btn btn-primary float-right" id="signupbutton">Sign Up</button>
 
 
