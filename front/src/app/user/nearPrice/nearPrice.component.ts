@@ -89,8 +89,8 @@ export class NearPriceComponent implements OnInit {
     }
   }
 
-  visit(idshop:number) {
-    localStorage.setItem('visit',`${idshop}`);
+  visit(iduser:number) {
+    localStorage.setItem('visit',`${iduser}`);
     this.router.navigate(['visitshop']);
   }
 

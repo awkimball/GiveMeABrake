@@ -1,6 +1,22 @@
+<div id="addapt" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-title">Please enter the appointment time</div>
+            <div class="modal-body">
+                <input class="text-center" type="date" id="change" [(ngModel)] = "apt.date" />
+                <button type="button" class="btn btn-default float-right" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-default float-right" data-dismiss="modal"id="saveAPt" (click)="addApt()">Save</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 <div class="bodypart">
   <div class="alert alert-primary" role="alert" >
-        <button type="button" class="btn btn-danger" style="display:float-left">Add To Favourtie+</button>
+        <button type="button" class="btn btn-danger" style="display:float-left" (click)="addFavor()">Add To Favourtie+</button>
+        <button  type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#addapt">Schedule appointment</button>
         <div class="shop_name text-center ">
         Welcome to Homepage of 
         <span class="alert-link">{{shop.shop_name}}</span>
@@ -37,6 +53,7 @@
         <div class="card-header"> {{item.name}} : $ {{item.price}}</div>
         <div class="card-body" style='font-size: 1.5rem'>
             {{item.description}}
+            <p class="float-right" *ngIf="item.notify==1">Great Deal!</p>
         </div>
       </div>
     </div>

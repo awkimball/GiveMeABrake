@@ -102,7 +102,6 @@ export class CheckdealComponent implements OnInit {
           var emp:Deals[] =[];
           newDeal.push(emp);
         }
-        console.log(newDeal)
       }
       this.alldeals = newDeal;
     
@@ -130,8 +129,8 @@ export class CheckdealComponent implements OnInit {
     }
   }
 
-  visit(idshop:number) {
-    localStorage.setItem('visit',`${idshop}`);
+  visit(iduser:number) {
+    localStorage.setItem('visit',`${iduser}`);
     this.router.navigate(['visitshop']);
   }
 
