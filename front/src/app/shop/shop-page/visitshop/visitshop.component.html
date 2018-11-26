@@ -31,24 +31,25 @@
 
   <div class="card">
       <div class="card">
-    <h1 class="card-body" *ngIf="deals.length >0">Here's the deal:</h1>
-    <h1 class="card-body" *ngIf="deals.length ==0">Oops! This shop doesn't have any deals (╯°Д°）╯</h1>
+    <h1 class="alert alert-warning" style="font-size:250%;font-family:Times New Roman, Times, serif" role="alert" *ngIf="deals.length >0">Deals:</h1>
+    <h1 class="alert alert-warning" style="font-size:150%;font-family:Times New Roman, Times, serif" role="alert" *ngIf="deals.length ==0">Oops! This shop doesn't have any deals </h1>
     <div *ngFor='let item of deals'>
-        <div class="card-header"> {{item.name}} : $ {{item.price}}</div>
-        <div class="card-body" style='font-size: 1.5rem'>
-            {{item.description}}
+        <div class="card" style="width:90%; margin: 0 auto;">
+            <div class="card-header"> {{item.name}} : $ {{item.price}}</div>
+            <div class="card-body" style='font-size: 1.5rem'>
+                {{item.description}}
+            </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
 
 
 
   <div class="card">
-      <h1 class="card-title">
-          Here's the review
-      </h1>
+
+          <span class="alert alert-primary" role="alert" style="font-size:150%;font-family:Times New Roman, Times, serif;">Reviews:</span>
 
       <div class="hiddenpart" *ngIf="reviews.length ===0" >
           <h4 class="col-md-8">Be the first to add a review</h4>
@@ -56,13 +57,16 @@
       
       <div class="card-body "> 
 
-        <div *ngFor='let customer of reviews' class="card">
-
-                <div class="card-title">
-                    Rating: <app-rating  [ratingValue]="customer.rating"></app-rating>
+        <div *ngFor='let customer of reviews'>
+            <div class="card" style="width:92%; margin: 0 auto;">
+                <div class="card-title" >
+                    <div class="alert alert-success" role="alert">
+                        Rating: <app-rating  [ratingValue]="customer.rating"></app-rating>
+                    </div>
                 </div>
-
                 <div class="card-body"> {{customer.comment}} </div>
+            </div>
+            <p></p>
         </div>
 
     </div>
@@ -70,30 +74,32 @@
 
     <div class="card">
         
-            <div class="row">
-                    <div class="col-md-8">
-                    <h1  width="1000" required minlength="5" maxlength="30">Leave your comment here </h1>
-                    
+            <div class="row" style="width:98%;margin: 0 auto;">
+                    <div class="col-md-9">
+                        <h1  width="1000" required minlength="5" maxlength="30">Write A Customer Review </h1>
                     </div>
 
 
-            <div class="form-group col-md-4">
-                    <select class="custom-select"   [(ngModel)]="newReview.rating" id="inputGroupSelect01" name=rate>
-                        <option *ngFor="let rate of [1,2,3,4,5]" value = {{rate}}>{{rate}} stars</option>
-                    </select>
-                    <div class = "col-sm-6">
-                        <app-rating  [ratingValue]="newReview.rating"></app-rating>
+            <div class="form-group col-md-2">
+                        <select class="custom-select"   [(ngModel)]="newReview.rating" id="inputGroupSelect01" name=rate>
+                            <option *ngFor="let rate of [1,2,3,4,5]" value = {{rate}}>{{rate}} stars</option>
+                        </select>
                     </div>
+                        <div class = "col-md-1">
+                            <app-rating  [ratingValue]="newReview.rating"></app-rating>
+
                 </div>
+            </div>
 
-        <div class="col-md-6">
-            <textarea  rows="10" cols="220" [(ngModel)]="newReview.comment" id="reviews" name=comment></textarea>
+        <div class="col-md-11" style="margin: 0 auto;">
+            <textarea  rows="10" style="box-sizing: border-box;width: 100%;" cols="200" [(ngModel)]="newReview.comment" id="reviews" name=comment></textarea>
             <button type="button" class="btn btn-primary" (click)="addreview()" [disabled]="!newReview.comment || !newReview.rating" >Submit</button>
         </div>  
 
 
     
-    </div>
+
+</div>
 </div>
 
 <div>
