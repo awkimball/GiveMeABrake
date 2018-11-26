@@ -97,5 +97,8 @@ export class FavoriteComponent implements OnInit {
       this.result.push({shopUserId:this.shop[i].iduser,shopName:this.shop[i].shop_name,isNotify:this.isNotify[i]});
     }
   }
-
+  visit(iduser:number) {
+    localStorage.setItem('visit',`${iduser}`);
+    this.router.navigate(['visitshop']);
+  }
 }
