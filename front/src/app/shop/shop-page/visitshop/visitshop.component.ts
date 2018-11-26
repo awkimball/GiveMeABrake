@@ -1,3 +1,4 @@
+import { Favorites } from './../../../domain/models/favorites';
 import { Account } from './../../../domain/models/account';
 import { Component, OnInit } from '@angular/core';
 import { TrustedStyleString } from '@angular/core/src/sanitization/bypass';
@@ -6,6 +7,7 @@ import { Review } from '../../../domain/models/review';
 import { Shop } from '../../../domain/models/shop';
 import { AccountService } from '../../../account.service';
 import { Deals } from 'src/app/domain/models/deals';
+import { Appointment } from 'src/app/domain/models/appointments';
 
 
 @Component({
@@ -14,6 +16,8 @@ import { Deals } from 'src/app/domain/models/deals';
   styleUrls: ['./visitshop.component.css']
 })
 export class VisitshopComponent implements OnInit {
+  apt:Appointment = new Appointment();
+
   shop:Shop;
   deals:Deals[]=[];
   reviews:Review[]=[];
@@ -26,9 +30,7 @@ export class VisitshopComponent implements OnInit {
 
       this.accountService.getDeal(this.shop.idshop).subscribe((alldeals:Deals[])=>{
         this.deals = alldeals;
-        console.log(this.shop.idshop)
         this.accountService.getReview(this.shop.idshop).subscribe((allreview:Review[])=>{
-          console.log(allreview)
           this.reviews = allreview;
 
         });
@@ -48,4 +50,17 @@ export class VisitshopComponent implements OnInit {
     });
   }
 
+  addFavor(){
+    var favor:Favorites = new Favorites();
+    favor.idshop = this.shop.idshop;
+    favor.iduser =  +localStorage.getItem('uid');
+    this.accountService.addFavor(favor.iduser,favor).subscribe();
+    alert('Adding favorite shop successfully!');
+  }
+
+  addApt(){
+    this.apt.iduser =  +localStorage.getItem('uid');
+    this.apt.idshop = this.shop.idshop;
+    
+  }
 }

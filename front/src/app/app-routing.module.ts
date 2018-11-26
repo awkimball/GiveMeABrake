@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { PricecheckComponent } from './shop/pricecheck/pricecheck.component';
 import { VisitshopComponent } from './shop/shop-page/visitshop/visitshop.component';
+import { FavoriteComponent } from './user/favorite/favorite.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'price', component: PricecheckComponent},
     { path: 'nearPrice', component: NearPriceComponent},
     { path: 'visitshop', component: VisitshopComponent},
+    { path: 'favorite', component: FavoriteComponent},
     { path: 'profile', data: {animation: 'profile'},
         children: [
             {path: '', component: ProfileComponent},

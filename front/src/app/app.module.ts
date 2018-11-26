@@ -1,3 +1,4 @@
+import { FavoriteComponent } from './user/favorite/favorite.component';
 import { NearPriceComponent } from './user/nearPrice/nearPrice.component';
 import { PricecheckComponent } from './shop/pricecheck/pricecheck.component';
 import { MapcalculatorService } from './mapcalculator.service';
@@ -38,7 +39,8 @@ import { RatingComponent } from './shop/shop-page/rating/rating.component';
       PricecheckComponent,
       NearPriceComponent,
       VisitshopComponent,
-      RatingComponent
+      RatingComponent,
+      FavoriteComponent
    ],
    imports: [
       BrowserModule,
@@ -62,5 +64,4 @@ export class AppModule {
   }
 
 }
-
 

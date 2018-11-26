@@ -1,0 +1,7 @@
+<div>
+    <p *ngIf="result.length == 0"> you don't have any favorite shops, go to explore now!</p>
+    <div *ngFor="let re of result">
+      <p>{{re.shopName}}</p>
+      <p *ngIf="re.isNotify">this shop has some great deals, check to see now!</p>
+    </div>
+  </div>

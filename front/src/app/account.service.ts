@@ -148,6 +148,18 @@ export class AccountService {
         .pipe(catchError(this.handleException));
     } 
 
+    getFavor(id:number): Observable<Favorites[]> {
+        return this.httpClient
+        .get<Favorites[]>(`${this.endPoint}/user/${id}/favorites`, this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
+    addFavor(id:number,favor:Favorites): Observable<Favorites> {
+        return this.httpClient
+        .post<Favorites>(`${this.endPoint}/user/${id}/add_favorite`, favor,this.httpOptions)
+        .pipe(catchError(this.handleException));
+    }
+
     protected handleException(exception: any) {
         var message = `${exception.status} : ${exception.statusText}\r\n${exception.message}`;
         alert(message);
@@ -163,4 +175,3 @@ export class AccountService {
 }
 
 //test 11/12
-
