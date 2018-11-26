@@ -1,44 +1,51 @@
 <div class="bodypart">
   <div class="alert alert-primary" role="alert" >
-        <button type="button" class="btn btn-danger" >Add To Favourtie</button>
-        <div class="shop_name">
-        Welcome to 
+        <button type="button" class="btn btn-danger" style="display:float-left">Add To Favourtie+</button>
+        <div class="shop_name text-center ">
+        Welcome to Homepage of 
         <span class="alert-link">{{shop.shop_name}}</span>
         </div>
-        
   </div>
 
   <div class="alert alert-secondary" role="alert">
-      Gas price: <span class="alert-link">{{shop.gas_price}}</span>
+      <span style="font-size:150%">Gas price: </span> 
+      <span class="alert-link" style="font-size:150%;font-family:Times New Roman, Times, serif">${{shop.gas_price}}</span>
   </div>
 
   <div class="alert alert-success" role="alert">
-      Address: <span  class="alert-link">{{shop.address}}</span>
+        <span style="font-size:170%">Address: </span>
+            <span  class="alert-link" style="font-size:150%;font-family:Times New Roman, Times, serif">{{shop.address}}</span>
   </div>
 
   <div class="alert alert-danger" role="alert">
-      Email: <span  class="alert-link">{{shop.shop_email}}</span>
+        <span style="font-size:250%">Email: </span>
+            <span  class="alert-link" style="font-size:150%;font-family:Times New Roman, Times, serif">{{shop.shop_email}}</span>
   </div>
 
-  <div class="alert alert-light" role="alert">
-      Description: <span class="alert-link">{{shop.description}}</span>
+  <div class="alert alert-dark" role="alert">
+      <span class="card-title" style="font-size:120%;">Description: </span>
+          <span class="alert-link" style="font-size:150%;font-family:Times New Roman, Times, serif">{{shop.description}}</span>
   </div>
 
-  <div>
-    <h1 *ngIf="deals.length >0">Here's the deal:</h1>
-    <h1 *ngIf="deals.length ==0">This shop doesn't have any deals</h1>
+
+
+  <div class="card">
+      <div class="card">
+    <h1 class="card-body" *ngIf="deals.length >0">Here's the deal:</h1>
+    <h1 class="card-body" *ngIf="deals.length ==0">Oops! This shop doesn't have any deals (╯°Д°）╯</h1>
     <div *ngFor='let item of deals'>
         <div class="card-header"> {{item.name}} : $ {{item.price}}</div>
         <div class="card-body" style='font-size: 1.5rem'>
             {{item.description}}
         </div>
       </div>
+    </div>
   </div>
 </div>
 
 
 
-  <!-- <div class="card">
+  <div class="card">
       <h1 class="card-title">
           Here's the review
       </h1>
@@ -80,11 +87,15 @@
                 </div>
 
         <div class="col-md-6">
-            <textarea type="text" [(ngModel)]="newReview.comment"  rows="10" cols="220"></textarea>
+            <textarea  rows="10" cols="220" [(ngModel)]="newReview.comment" id="reviews" name=comment></textarea>
             <button type="button" class="btn btn-primary" (click)="addreview()" [disabled]="!newReview.comment || !newReview.rating" >Submit</button>
         </div>  
 
 
     
     </div>
-</div> -->
+</div>
+
+<div>
+    <pre>{{newReview | json}}</pre>
+</div>

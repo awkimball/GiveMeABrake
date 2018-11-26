@@ -8,6 +8,12 @@ ul{
   margin-bottom: 0;
 }
 
+
+.card{
+  width: 90%;
+  margin: 0 auto;
+}
+
 body{
   background-color: white;
 }
@@ -22,4 +28,12 @@ body{
 }
 #buttondeal{
   text-align: center
+}
+
+.card {
+  width: 80%;
+  margin: 0 auto;
+}
+.card-header {
+  background-color: rgb(225, 240, 222)
 }

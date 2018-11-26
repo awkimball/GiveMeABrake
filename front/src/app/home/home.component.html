@@ -23,6 +23,7 @@
       </div>
 
 
+
       <div *ngIf="isLogin === true">
           <!-- <div>
               <img src="./../../assets/pic.jpg" alt="" class = "float-right"/>
@@ -31,45 +32,140 @@
             <div class = "card">
                 <div class = "card-header"></div>
                 <div class = "card-body">
-                    <h5 class="card-title">Welcome {{account.username}}!</h5>
-                    <p class="card-text">Your current location is {{account.zipcode}}  
-                        <a  class="btn btn-outline-secondary btn-sm" (click)="changeZip=true">Change location</a></p>
-                    <div [hidden]="changeZip!=true">
-                        <input type="number" id="changeZipcode" [(ngModel)] = "newZip" />
-                        <a  class="btn btn-secondary btn-sm" (click)="saveZip()">Save location</a>
+                        <span class="card-title"style="font-size: 50px;font-family:Courier New, Courier, monospace">Welcome   </span>
+                        <span class="carowner_title"   style="font-size: 50px;font-weight: bold">{{account.username}}!</span>
+                        <p></p>
+ 
                     </div>
-                    <div class="alert alert-info alert-dismissable fade show" role="alert">You haven't refueled your {{cars?.model}} since
-                        <strong> {{cars?.oil_change_miles}} miles </strong>ago
-                        <button type="button" class="close" data-dismiss="alert" aria-lable="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <p></p>
+                    <p></p>
+
+                                
+                                    <div >
+                                        <span class="alert alert-light" role="alert" style="text-decoration:underline;color:red;font-size:150%;">*Your current location is:</span> 
+                                        <strong style="  color:black;font-size:150%;font-family:Times New Roman, Times, serif">{{account.zipcode}}</strong>
+                                        <a  class="btn btn-outline-secondary btn-sm float-right" style="color:green;font-size:150%"(click)="changeZip=true">Change location</a>
+                                    </div>
+                                    <p></p>
+                                    
+
+                                    <div class="float-right" [hidden]="changeZip!=true" >
+                                            <input type="number" id="changeZipcode" [(ngModel)] = "newZip" />
+                                            <a  class="btn alert-success btn-sm" (click)="saveZip()">Save location</a>
+                                    </div>
+
+                                
+
+
+
+                        </div>
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">You haven't refueled your {{cars?.model}} since
+                                    <strong> {{cars?.oil_change_miles}} miles </strong>ago
+                                    <button type="button" class="close" data-dismiss="alert" aria-lable="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                                
+                            
+        
+        <div id="shopfeatures"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="card text-left" >
+                            <div class="card-body">
+                              <h5 class="card-title" style="color:rgb(101, 144, 238);font-family:">See Nearby Gas Price</h5>
+                              <p class="card-text">
+                                  <p></p>
+                                  <span class="font-weight-light" >As a </span><span class="font-weight-bold">car owner</span><span class="font-weight-light">, you can choose the best gas </span>
+                                  <p></p>
+
+
+                                  <a href="#" class="btn btn-outline-primary" routerLink="/nearPrice"><div>Check nearby gas price</div></a>
+                            </div>
                     </div>
                 </div>
+                <div class="col"></div>
+ 
+                <div class="col">
+                        <div class="card text-right" >
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:darkgreen">Check</h5>
+                                <span class="font-weight-light" >As a </span><span class="font-weight-bold">car owner</span><span class="font-weight-light">, you can choose the best gas</span>
+                                <p></p>
+                                <a href="#" class="btn btn-outline-success" ><div>Check near gas price</div></a>
+                            </div>
+                        </div>
+                    </div>
             </div>
-
-            <div id="userfeatures">
-                <a  class="col-md-4 allfeature" routerLink="/nearPrice"><div>See nearby gas price</div></a>
-                <a  class="col-md-4 allfeature"><div>Check </div></a>
-                <a  class="col-md-4 allfeature"><div>Save location</div></a>
-            </div>
-      </div>
+        </div>    
+      
 
 
       <div *ngIf="account.account_type == 1">
-            <div class = "card">
-                    <div class = "card-header"></div>
-                    <div class = "card-body">
-                        <h5 class="card-title">Welcome {{account.username}}!</h5>
-                        <p class="card-text">Your shop {{shop.shop_name}} has gas price $ {{shop.gas_price}}.
+        <div class = "card">
+                <div class = "card-header"></div>
+                <div class = "card-body">
+                    <span class="card-title"style="font-size: 50px;font-family:Courier New, Courier, monospace">Welcome      </span>
+                        <span class="carowner_title"   style="font-size: 50px;font-weight: bold">{{account.username}}! </span>
+                </div>
+                <p></p>
+                <p></p>
+                <div class = "card" style="height:50%;">
+                    <div class="card-title" >
+                        <div class="alert alert-light" role="alert" style="text-decoration:underline;color:red;">*Your current gas price is <strong style="  color:black;">$ {{shop.gas_price}}</strong></div>
+                    </div>
+                </div>
+            </div>
+        <p></p>
 
+
+        <div id="shopfeatures"></div>
+        <div class="row">
+                <div class="col">
+                    <div class="card" >
+                            <div class="card-body">
+                              <h5 class="card-title" style="color:rgb(101, 144, 238);font-family:">Check near gas price</h5>
+                              <p class="card-text">
+                                  <p></p>
+                                  <span class="font-weight-light" >As a </span><span class="font-weight-bold">shop owner</span><span class="font-weight-light">, you can keep your price competitive</span>
+                                  <p></p>
+
+
+                                  <a href="#" class="btn btn-outline-primary" routerLink="/price"><div>Check near gas price</div></a>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="card text-center" >
+                         <div class="card-body">
+                            <h5 class="card-title" style="color:rgb(78, 78, 78);">Check near shops' deals</h5>
+
+
+                            <p></p>
+                            <span class="font-weight-light" >As a </span><span class="font-weight-bold">shop owner</span><span class="font-weight-light">, you can gain insight to your competitors</span>
+                            <p></p>                     
+
+                            <a href="#" class="btn btn-outline-secondary"routerLink="/checkdeal"><div>Check near shops' deals</div></a>
+                        </div>
                     </div>
                 </div>
 
-                <div id="shopfeatures">
-                        <a  class="col-md-4 allfeature" routerLink="/price"><div>Check near gas price</div></a>
-                        <a  class="col-md-4 allfeature" routerLink="/checkdeal"><div>Check near shops' deals</div></a>
-                        <a  class="col-md-4 allfeature" routerLink="/deals"><div>Upload my new deals</div></a>
+                <div class="col">
+                    <div class="card text-right" >
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgreen">Upload my new deals</h5>
+                            <span class="font-weight-light" >As a </span><span class="font-weight-bold">shop owner</span><span class="font-weight-light">, you can adjust your developmented strategy</span>
+                            <p></p>
+                            <a href="#" class="btn btn-outline-success" routerLink="/deals"><div>Upload my new deals</div></a>
+                        </div>
                     </div>
-      </div>
-    </div>
+                </div>
+         </div>
+
+
 </div>
+
+</div>
+</div>
+

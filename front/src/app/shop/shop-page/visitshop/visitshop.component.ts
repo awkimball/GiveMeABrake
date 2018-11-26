@@ -15,8 +15,8 @@ import { Deals } from 'src/app/domain/models/deals';
 })
 export class VisitshopComponent implements OnInit {
   shop:Shop;
-  deals:Deals[];
-  reviews:Review[];
+  deals:Deals[]=[];
+  reviews:Review[]=[];
 
   newReview:Review = new Review();
 
@@ -26,18 +26,12 @@ export class VisitshopComponent implements OnInit {
 
       this.accountService.getDeal(this.shop.idshop).subscribe((alldeals:Deals[])=>{
         this.deals = alldeals;
+        console.log(this.shop.idshop)
+        this.accountService.getReview(this.shop.idshop).subscribe((allreview:Review[])=>{
+          console.log(allreview)
+          this.reviews = allreview;
 
-        // this.accountService.getAllusers().subscribe((alluser:Account[])=>{
-        //   for(let user of alluser){
-        //     this.accountService.getReview(user.iduser,this.shop.idshop).subscribe((allreview:Review[])=>{
-        //       if(allreview.length>0) {
-        //         for(let re of allreview){
-        //           this.reviews.push(re);
-        //         }
-        //       }
-        //     });
-        //   }
-        // });
+        });
       });
     });
   }
@@ -45,13 +39,13 @@ export class VisitshopComponent implements OnInit {
   ngOnInit() {
   }
   addreview() {
-    // this.samplereview.shop_name=this.shopname;
-    // this.samplereview.idusers=1;
-    // this.reviewlist.push(this.samplereview);
-    // this.accountService.addreview(this.samplereview).subscribe(rev => {});
-
-    // this.samplereview=new Review();
-
+    this.newReview.idshop=this.shop.idshop;
+    this.newReview.iduser = +localStorage.getItem('uid');
+    this.accountService.updateReview(this.newReview).subscribe((re:Review)=>{
+      this.accountService.getReview(this.shop.idshop).subscribe((allreview:Review[])=>{
+        this.reviews = allreview;
+      });
+    });
   }
 
 }

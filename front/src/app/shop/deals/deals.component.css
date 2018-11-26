@@ -7,3 +7,11 @@
   background-color: white;
 }
 
+.card {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.notify_button {
+  size:80%;
+}
