@@ -1,5 +1,3 @@
-import { Owner } from '../domain/models/owner';
-import { Driver } from '../domain/models/driver';
 
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
@@ -37,7 +35,9 @@ export class LoginComponent implements OnInit {
 
                     alert('Authenticated Successfully!');
                     localStorage.setItem('loggedIn', 'true');
-                    localStorage.setItem('uid', `${accounts[0].idusers}`);
+                    localStorage.setItem('uid', `${accounts[0].iduser}`);
+                    localStorage.setItem('zip',`${accounts[0].zipcode}`);
+                    localStorage.setItem('type',`${accounts[0].account_type}`);
                     this.router.navigate(['home']);
 
                 } else {

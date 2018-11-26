@@ -1,0 +1,12 @@
+.card {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.card-header {
+    background-color: rgb(225, 240, 222)
+}
+
+.shopname_button:hover{
+    color: hotpink;
+}

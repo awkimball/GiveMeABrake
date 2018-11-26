@@ -1,0 +1,35 @@
+<div class="alert alert-danger text-center" role="alert" style="font-size: 300%;text-decoration: underline;  margin: 0 auto;width:80%;">
+        <span class="text-center "style="margin: 0 auto;font-family: Palatino Linotype, Book Antiqua, Palatino, serif;">Check Your Nearby Competitors' Deals Now !</span>
+        <a href="#" class="btn btn-outline-primary" routerLink="/nearPrice"  style="display: inline-block;font-size: 30%;font-family: Arial, Helvetica, sans-serif;float:right;">Check My Deals</a>
+        
+    </div>
+
+          <div class = "card">
+
+
+         <div>
+                <div class="alert alert-secondary" role="alert"  style="width: 80%;margin: 0 auto;">
+                        <h4  style="color:black;font-size:120%;">Here's the 3 nearest shop:</h4>
+                    </div>
+             <div *ngFor="let i of result" >
+                 <div class="card">
+                     <div class="card-header">
+                       <span style="color:darkgreen;font-size: 100%;font-family: Courier New, Courier, monospace;" >Shop Name: </span>
+                       <a  class="badge badge-light" style="font-family: Comic Sans MS, cursive, sans-serif;font-size: 120%;" (click)= "visit(i.Shop.iduser)"> {{i.Shop.shop_name}}</a>
+                       <p class="float-right"> {{i.number}} miles away</p>
+                     </div>
+                     <div class="card-body">
+                         <p *ngIf="i.Deals.length==0">This shop does not have any deals currently</p>
+                         <p></p>
+                       <ul *ngFor="let eachDeal of i.Deals">
+                           
+                           <div class="card-title"></div>
+                             <p >{{eachDeal.name}} : $ {{eachDeal.price}}</p>
+                             <p>{{eachDeal.description}}</p>
+                             <p></p>
+                       </ul>
+                     </div>
+                   </div>
+             </div>
+ 
+       </div>

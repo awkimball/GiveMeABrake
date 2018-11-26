@@ -1,27 +1,16 @@
-.btn{
-  margin:1em;
-}
-
-h4{
-  margin-left:1em;
-}
-
-.alert{
-  margin:1em;
-}
-
-#main{
+.jumbotron{
   background-color: white;
-  border:1px solid black;
-  width: 70em;
-  margin-left:auto;
-  margin-right:auto;
 }
 
-.mainpage{
-  padding:2em;
+
+
+.allfeature{
+  background-color: white;
+  display: inline-block;
+  width: 100%;
+  height:8em;
 }
-/*
-#main{
-  background-color: gray;
-} */
+
+#shopfeatures{
+  margin-top: 2em;
+}

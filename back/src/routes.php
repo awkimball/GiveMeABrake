@@ -20,6 +20,14 @@ $app->get('/users', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
+$app->get('/shops', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM shops"
+    );
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
 $app->post('/login', function ($request, $response) {
     $sth = $this->db->prepare(
         "SELECT * FROM users WHERE email=:email AND password=:password"
@@ -27,7 +35,6 @@ $app->post('/login', function ($request, $response) {
     $values = $request->getParsedBody();
     $email = $values['email'];
     $password = $values['password'];
-
     $sth->bindParam(':email', $email);
     $sth->bindParam(':password', $password);
     
@@ -35,7 +42,6 @@ $app->post('/login', function ($request, $response) {
     $users = $sth->fetchAll();
     
     return $this->response->withJson($users);
-
 });
 //get user of id
 $app->get('/user/{iduser}', function ($request, $response, $args) {
@@ -60,7 +66,6 @@ $app->post('/register', function ($request, $response) {
     $sth->bindParam("zipcode", $input['zipcode']);
     $sth->bindParam("account_type", $input['account_type']);
     $sth->bindParam("phone", $input['phone']);
-
     $sth->execute();
     return $this->response->withJson($input);
 });
@@ -77,12 +82,9 @@ $app->put('/user/{iduser}', function ($request, $response) {
     $sth->bindParam("zipcode", $input['zipcode']);
     $sth->bindParam("account_type", $input['account_type']);
     $sth->bindParam("phone", $input['phone']);
-
-
     $sth->execute();
     return $this->response->withJson($input);	
 	});
-
 $app->post('/register_shop', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
@@ -95,26 +97,24 @@ $app->post('/register_shop', function ($request, $response) {
     $sth->bindParam("shop_email", $input['shop_email']);
     $sth->bindParam("shop_name", $input['shop_name']);
     $sth->bindParam("description", $input['description']);
-
     $sth->execute();
     return $this->response->withJson($input);
 });
-
 $app->put('/user/{iduser}/shop', function ($request, $response) {
 	$input = $request->getParsedBody();
-	$sql = "UPDATE users SET gas_price=:gas_price, address=:address, shop_email = :shop_email, shop_name = :shop_name,
-			 description = :description WHERE iduser = :iduser AND shop_name = :shop_name";
+	$sql = "UPDATE shops SET gas_price = :gas_price, address = :address, shop_email = :shop_email, shop_name = :shop_name,
+			 description = :description WHERE iduser = :iduser AND idshop = :idshop";
 	$sth = $this->db->prepare($sql);
+    $sth->bindParam("iduser", $input['iduser']);
+    $sth->bindParam("idshop", $input['idshop']);
     $sth->bindParam("gas_price", $input['gas_price']);
     $sth->bindParam("address", $input['address']);
     $sth->bindParam("shop_email", $input['shop_email']);
     $sth->bindParam("shop_name", $input['shop_name']);
     $sth->bindParam("description", $input['description']);
-
     $sth->execute();
     return $this->response->withJson($input);	
 });
-
 $app->get('/user/{iduser}/shops', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM shops WHERE iduser=:iduser"
@@ -124,7 +124,6 @@ $app->get('/user/{iduser}/shops', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 $app->get('/user/{iduser}/vehicles', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM vehicles WHERE iduser=:iduser"
@@ -134,13 +133,12 @@ $app->get('/user/{iduser}/vehicles', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 $app->post('/add_vehicle', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
-        vehicles (iduser, vin, make, model, year, miles, tire_rotation_miles, tire_change_miles, 
+        vehicles (iduser, vin, make, model, year, miles, tire_rotation_miles, oil_change_miles, 
         transmission_check_miles, last_inspection_date, general_description) 
-        VALUES (:iduser, :vin, :make, :model, :year, :miles, :tire_rotation_miles, :tire_change_miles,
+        VALUES (:iduser, :vin, :make, :model, :year, :miles, :tire_rotation_miles, :oil_change_miles,
         :transmission_check_miles, :last_inspection_date, :general_description)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
@@ -150,71 +148,66 @@ $app->post('/add_vehicle', function ($request, $response) {
     $sth->bindParam("year", $input['year']);
     $sth->bindParam("miles", $input['miles']);
     $sth->bindParam("tire_rotation_miles", $input['tire_rotation_miles']);
-    $sth->bindParam("tire_change_miles", $input['tire_change_miles']);
+    $sth->bindParam("oil_change_miles", $input['oil_change_miles']);
     $sth->bindParam("transmission_check_miles", $input['transmission_check_miles']);
     $sth->bindParam("last_inspection_date", $input['last_inspection_date']);
     $sth->bindParam("general_description", $input['general_description']);
     $sth->execute();
     return $this->response->withJson($input);
 });
-
-$app->put('/user/{iduser}/vehicle/{vid}', function ($request, $response) {
+//update vehicle
+$app->put('/user/{iduser}/vehicle/{vin}', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "UPDATE vehicles
-        SET iduser = :iduser, vid=:vid, make=:make, model=:model, year=:year, miles=:miles,
-        tire_rotation_miles=:tire_rotation_miles, tire_change_miles=:tire_change_miles transmission_check_miles=:transmission_check_miles,
+        SET iduser = :iduser, vin=:vin, make=:make, model=:model, year=:year, miles=:miles,
+        tire_rotation_miles=:tire_rotation_miles, oil_change_miles=:oil_change_miles, transmission_check_miles=:transmission_check_miles,
         last_inspection_date=:last_inspection_date, general_description=:general_description WHERE
-        iduser = :iduser AND vid = :vid";
+        iduser = :iduser AND vin = :vin";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
-    $sth->bindParam("vid", $input['vid']);
+    $sth->bindParam("vin", $input['vin']);
     $sth->bindParam("make", $input['make']);
     $sth->bindParam("model", $input['model']);
     $sth->bindParam("year", $input['year']);
     $sth->bindParam("miles", $input['miles']);
     $sth->bindParam("tire_rotation_miles", $input['tire_rotation_miles']);
-    $sth->bindParam("tire_change_miles", $input['tire_change_miles']);
+    $sth->bindParam("oil_change_miles", $input['oil_change_miles']);
     $sth->bindParam("transmission_check_miles", $input['transmission_check_miles']);
     $sth->bindParam("last_inspection_date", $input['last_inspection_date']);
     $sth->bindParam("general_description", $input['general_description']);
     $sth->execute();
-    $users = $sth->fetchAll();
+    //$users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 //An update statement solely for vehicle miles to be used to for the Update Miles button
-$app->put('/user/{iduser}/vehicle/{vid}/miles', function ($request, $response) {
+$app->put('/user/{iduser}/vehicle/{vin}/miles', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "UPDATE vehicles
-        SET miles=:miles WHERE iduser = :iduser AND vid = :vid";
+        SET miles=:miles WHERE iduser = :iduser AND vin = :vin";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("miles", $input['miles']);
     $sth->execute();
-    $users = $sth->fetchAll();
+    //$users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
-$app->get('/zip/{zipcode}', function ($request, $response, $args) {
+$app->get('/zip', function ($request, $response, $args) {
     $sth = $this->db->prepare(
-        "SELECT * FROM zip WHERE zipcode=:zipcode"
+        "SELECT * FROM zips"
     );
-    $sth->bindParam("zipcode", $args['zipcode']);
     $sth->execute();
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 //get all deals
-$app->get('/user/{iduser}/deals', function ($request, $response, $args) {
+$app->get('/user/{idshop}/deals', function ($request, $response, $args) {
     $sth = $this->db->prepare(
-        "SELECT * FROM deals WHERE iduser=:iduser"
+        "SELECT * FROM deals WHERE idshop=:idshop"
     );
-    $sth->bindParam("iduser", $args['iduser']);
+    $sth->bindParam("idshop", $args['idshop']);
     $sth->execute();
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 //add a deal
 $app->post('/add_deal', function ($request, $response) {
     $input = $request->getParsedBody();
@@ -227,39 +220,45 @@ $app->post('/add_deal', function ($request, $response) {
     $sth->bindParam("name", $input['name']);
     $sth->bindParam("description", $input['description']);
     $sth->bindParam("notify", $input['notify']);
-
     $sth->execute();
     return $this->response->withJson($input);
 });
-
-
+//update deals
+/*$app->put('/user/{idshop}/deals/{iddeal}', function ($request, $response) {
+	$input = $request->getParsedBody();
+	$sql = "UPDATE users SET gas_price=:gas_price, address=:address, shop_email = :shop_email, shop_name = :shop_name,
+			 description = :description WHERE iduser = :iduser AND shop_name = :shop_name";
+	$sth = $this->db->prepare($sql);
+    $sth->bindParam("gas_price", $input['gas_price']);
+    $sth->bindParam("address", $input['address']);
+    $sth->bindParam("shop_email", $input['shop_email']);
+    $sth->bindParam("shop_name", $input['shop_name']);
+    $sth->bindParam("description", $input['description']);
+    $sth->execute();
+    return $this->response->withJson($input);	
+});*/
 $app->post('/add_review', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
-        review (iduser, idshop, comment, rating) 
+        reviews (iduser, idshop, comment, rating) 
         VALUES (:iduser, :idshop, :comment, :rating)";
     $sth = $this->db->prepare($sql);
     $sth->bindParam("iduser", $input['iduser']);
     $sth->bindParam("idshop", $input['idshop']);
     $sth->bindParam("comment", $input['comment']);
     $sth->bindParam("rating", $input['rating']);
-
     $sth->execute();
     return $this->response->withJson($input);
 });
-
-$app->get('/user/{iduser}/shops/{idshop}/reviews', function ($request, $response, $args) {
+$app->get('/shops/{idshop}/reviews', function ($request, $response, $args) {
     $sth = $this->db->prepare(
-        "SELECT * FROM review WHERE iduser=:iduser AND idshop=:idshop"
+        "SELECT * FROM reviews WHERE idshop=:idshop"
     );
-    $sth->bindParam("iduser", $args['iduser']);
     $sth->bindParam("idshop", $args['idshop']);
-
     $sth->execute();
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
 $app->get('/nearby_shops/{zipcode}', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM shops JOIN users ON shops.iduser=users.iduser WHERE users.zipcode=:zipcode"
@@ -269,8 +268,6 @@ $app->get('/nearby_shops/{zipcode}', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
-
 $app->post('/user/{iduser}/add_favorite', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
@@ -282,7 +279,6 @@ $app->post('/user/{iduser}/add_favorite', function ($request, $response) {
     $sth->execute();
     return $this->response->withJson($input);
 });
-
 $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
     $sth = $this->db->prepare(
         "SELECT * FROM favorites  WHERE iduser=:iduser"
@@ -292,8 +288,6 @@ $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
     $users = $sth->fetchAll();
     return $this->response->withJson($users);
 });
-
-
 $app->post('/add_appointment', function ($request, $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO 
@@ -307,7 +301,16 @@ $app->post('/add_appointment', function ($request, $response) {
 $sth->execute();
     return $this->response->withJson($input);
 });
-
+//Get all appointments with idshop
+$app->get('/shops/{idshop}/appointments', function ($request, $response, $args) {
+    $sth = $this->db->prepare(
+        "SELECT * FROM appointments  WHERE idshop = :idshop"
+    );
+    $sth->bindParam("idshop", $args['idshop']);
+    $sth->execute();
+    $users = $sth->fetchAll();
+    return $this->response->withJson($users);
+});
 // $app->get('/user/{iduser}/favorites', function ($request, $response, $args) {
 //     $sth = $this->db->prepare(
 //         "SELECT * FROM favorites  WHERE iduser=:iduser"
@@ -317,6 +320,7 @@ $sth->execute();
 //     $users = $sth->fetchAll();
 //     return $this->response->withJson($users); 
 // });
-
-
-
+$app->map(['GET', 'POST', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
+	$handler= $this->notFoundHandler;
+	return $handler($req, $res);
+});

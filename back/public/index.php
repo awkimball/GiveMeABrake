@@ -8,23 +8,19 @@ if (PHP_SAPI == 'cli-server') {
         return false;
     }
 }
-
 require __DIR__ . '/../vendor/autoload.php';
-
 session_start();
-
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
-
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
-
 // Register middleware
 require __DIR__ . '/../src/middleware.php';
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 // Register routes
 require __DIR__ . '/../src/routes.php';
-
 // Run app
 $app->run();

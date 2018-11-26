@@ -1,11 +1,10 @@
-export interface Account {
+export class Account {
 
-    idusers:number;
+    iduser:number;
+    email:string;
     username:string;
     password:string;
-    email:string;
     zipcode:number;
     phone:number;
     account_type:number;
-
 }

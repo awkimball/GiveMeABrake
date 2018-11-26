@@ -1,8 +1,5 @@
 export class Zipcode {
-
-  zip?: number;
-  lat?: number;
-  lng?: number;
-
-
+  zipcode: number;
+  longitude: number;
+  latitude: number;
 }

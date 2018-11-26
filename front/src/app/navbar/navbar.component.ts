@@ -1,3 +1,4 @@
+import { Zipcode } from './../domain/models/zipcode';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../account.service';
 import { longStackSupport } from 'q';
@@ -8,6 +9,7 @@ import { longStackSupport } from 'q';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+    zips:Zipcode[]=[];
     constructor(public accountService:AccountService) {
     }
 
@@ -19,6 +21,7 @@ export class NavbarComponent implements OnInit {
     }
     
     logout() {
+        
 
         localStorage.setItem('loggedIn', 'false');
         localStorage.setItem('uid', 'null');
