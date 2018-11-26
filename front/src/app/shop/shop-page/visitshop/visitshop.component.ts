@@ -24,7 +24,15 @@ export class VisitshopComponent implements OnInit {
 
   newReview:Review = new Review();
 
+  accountTpye:boolean;
+
   constructor(public accountService:AccountService) { 
+    if(+localStorage.getItem('type') == 0){
+      this.accountTpye = true;
+    }
+    else{
+      this.accountTpye = false;
+    }
     this.accountService.getShop(+localStorage.getItem('visit')).subscribe(shop =>{
       this.shop = shop[0];
 
@@ -58,9 +66,4 @@ export class VisitshopComponent implements OnInit {
     alert('Adding favorite shop successfully!');
   }
 
-  addApt(){
-    this.apt.iduser =  +localStorage.getItem('uid');
-    this.apt.idshop = this.shop.idshop;
-    
-  }
 }

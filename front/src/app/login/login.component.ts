@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
                     alert('Authenticated Successfully!');
                     localStorage.setItem('loggedIn', 'true');
                     localStorage.setItem('uid', `${accounts[0].iduser}`);
-                    localStorage.setItem('zip',`${accounts[0].zipcode}`)
+                    localStorage.setItem('zip',`${accounts[0].zipcode}`);
+                    localStorage.setItem('type',`${accounts[0].account_type}`);
                     this.router.navigate(['home']);
 
                 } else {

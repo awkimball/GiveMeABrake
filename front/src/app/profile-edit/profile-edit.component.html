@@ -3,9 +3,9 @@
             <div class="">
                 <div class="card">
                     <div class="card-header my-auto">
-                        <span class='align-middle' style='font-size: 1.5rem'>Profile - Edit</span>
-                        <button class='btn btn-success float-right' [routerLink]="[ '..' ]">
-                        Save Profile
+                        <span class='align-middle' style='font-size: 1.5rem'>Profile</span>
+                        <button class='btn btn-dark float-right' [routerLink]="[ '\edit' ]">
+                        Edit Profile
                         </button>
                     </div>
                     <div class="container card-body col-md-10">
@@ -13,9 +13,7 @@
                             <div class='col-md-7 mt-2'>
                                 <div class="form-group">
                                     <label for="account_name">
-                                        <b *ngIf='account.account_type == 0'>Name: </b>
-                                        <b *ngIf='account.account_type == 1'>Company Name: </b>
-    
+                                        <b >Name: </b>
                                     </label>
                                     <input type="text" id="account_name" class="form-control" [(ngModel)]="account.username"/>
                                 </div>
@@ -24,50 +22,98 @@
                                     <label for="account_email">
                                         <b>Email: </b>
                                     </label>
-                                    <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email"/>
+                                    <input type="email" id="account_email" class="form-control" [(ngModel)]="account.email" />
                                 </div>
                             </div>
     
-                            <div class='col-md-4 ml-auto'>
-                                <img class='my-0' src="https://placeholdit.co//i/180x180?&text=User Photo" alt="">
-                            </div>
                         </div>
     
                         <div class='row mt-4'>
                             <div class='form-group col-md-6 mr-auto'>
                                 <label for="phonebox"><b>Phone</b></label>
-                                <input class='form-control' type="text" name="profphonebox" id="phonebox" [ngModel]='account.phone'>
+                                <input class='form-control' type="text" name="profphonebox" id="phonebox" [(ngModel)]='account.phone' >
                             </div>
                             <div class='form-group col-md-6 ml-auto'>
                                     <label for="zipbox"><b>Zip/Postal Code</b></label>
-                                    <input class='form-control' type="text" name="profzipbox" id="zipbox" [ngModel]='account.zipcode'>
+                                    <input class='form-control' type="text" name="profzipbox" id="zipbox" [(ngModel)]='account.zipcode'>
                                 </div>
                         </div>
                         
                         <div class="form-group" *ngIf='account.account_type == 0'>
                             <label for="dept_form">
-                              <b>My Cars </b>
+                              <b>My Car</b>
                             </label>
-                            <ul>
-                                <li class='card' *ngFor='let car of cars'>
-                                <div class='card-header'>{{account.name}} {{account.name}} {{account.name}}</div>
-                                <div class='card-body'></div>
-                                </li>
-                            </ul>
-                        </div>
-    
-                        <div>
-                            <div class="form-group">
-                                <label for="corporatebtn">
-                                    <b>Corporate</b>
-                                </label>
-                                <br>
-                                <button class="btn btn-success"   id="corporatebtn"  disabled>Apply</button>
-                                <br>
-                                <small class='text-muted'>Apply for a corporate account here</small>
-                            </div>   
+                            <div class='row mt-4'>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="makebox"><b>Make</b></label>
+                                    <input class='form-control' type="text" name="makebox" id="makebox" [(ngModel)]='vehicle.make'>
+                                </div>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="modelbox"><b>Model</b></label>
+                                    <input class='form-control' type="text" name="modelbox" id="modelbox" [(ngModel)]='vehicle.model' >
+                                </div>
+                            </div>
+                            <div class='row mt-4'>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="yearbox"><b>Year</b></label>
+                                    <input class='form-control' type="number" name="yearbox" id="yearbox" [(ngModel)]='vehicle.year'>
+                                </div>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="milesbox"><b>Miles</b></label>
+                                    <input class='form-control' type="number" name="milesbox" id="milesbox" [(ngModel)]='vehicle.miles'>
+                                </div>
+                            </div>
+                            <div class='row mt-4'>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="tirebox"><b>Your last tire rotation time based on miles</b></label>
+                                    <input class='form-control' type="number" name="tirebox" id="tirebox" [(ngModel)]='vehicle.tire_rotation_miles'>
+                                </div>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="oilbox"><b>Your last oil change time based on miles</b></label>
+                                    <input class='form-control' type="number" name="oilbox" id="oilbox" [(ngModel)]='vehicle.oil_change_miles'>
+                                </div>
+                            </div>
+                            <div class='row mt-4'>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="transbox"><b>Your last transmission time based on miles</b></label>
+                                    <input class='form-control' type="number" name="transbox" id="transbox" [(ngModel)]='vehicle.transmission_check_miles'>
+                                </div>
+                            <div class='form-group col-md-6 mr-auto'>
+                                    <label for="insbox"><b>Your last inspection time</b></label>
+                                    <input class='form-control' type="date" name="insbox" id="insbox" [(ngModel)]='vehicle.last_inspection_date'>
+                                </div>
+                            </div>
+                            <div class='form-group col-md-12 mr-auto'>
+                                    <label for="discbox"><b>General description</b></label>
+                                    <textarea class='form-control' type="text" name="discbox" id="discbox" [(ngModel)]='vehicle.general_description' ></textarea>
+                                </div>
                             
-                            <div class='form-group'></div>
+                        </div>
+
+                        <div class="form-group" *ngIf='account.account_type == 1'>
+                                <label for="dept_form">
+                                  <b>My Shop</b>
+                                </label>
+                                <div class='form-group col-md-4 mr-auto'>
+                                        <label for="shopgasbox"><b>Gas price</b></label>
+                                        <input class='form-control' type="number" name="shopgasbox" id="shopgasbox" [(ngModel)]='shop.gas_price' >
+                                    </div>
+                                <div class='row mt-4'>
+                                        <div class='form-group col-md-6 mr-auto'>
+                                                <label for="shopnamebox"><b>Shop name</b></label>
+                                                <input class='form-control' type="text" name="shopnamebox" id="shopnamebox" [(ngModel)]='shop.shop_name'>
+                                            </div>
+                                        <div class='form-group col-md-6 mr-auto'>
+                                                <label for="shopemailbox"><b>Shop email</b></label>
+                                                <input class='form-control' type="text" name="shopemailbox" id="shopemailbox" [(ngModel)]='shop.shop_email'>
+                                            </div>
+                                        </div>
+                                        <div class='form-group col-md-12 mr-auto'>
+                                                <label for="shopdiscbox"><b>Shop description</b></label>
+                                                <textarea class='form-control' type="text" name="shopdiscbox" id="shopdiscbox" [(ngModel)]='shop.description'></textarea>
+                                            </div>
+                                </div>
+                                
                         </div>
                         
     
@@ -77,4 +123,3 @@
             </div>
         </div>
     </div>
-    
